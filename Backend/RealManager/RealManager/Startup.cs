@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RealManager.Services;
+using RealManager.Services.Interfaces;
 
 namespace RealManager
 {
@@ -30,6 +32,8 @@ namespace RealManager
             {
                 c.SwaggerDoc(name: "v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Real Manager API", Version = "v1" });
             });
+
+            services.AddScoped<IMatchService, MatchService>();
 
         
         }
