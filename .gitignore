@@ -63,3 +63,5 @@ typings/
 obj/
 bin/
 .vs/
+.vscode
+packages-microsoft-prod.deb
