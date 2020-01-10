@@ -19,7 +19,8 @@ namespace RealManager.Services
                 Pace = 80,
                 Pass = 80,
                 Physical = 80,
-                Shoot = 80
+                Shoot = 80,
+                Position = Position.ATA,
             };
 
             var defencePlayer = new Player()
@@ -29,7 +30,8 @@ namespace RealManager.Services
                 Pace = 20,
                 Pass = 20,
                 Physical = 20,
-                Shoot = 20
+                Shoot = 20,
+                Position = Position.DF,
             };
 
             var goalKeeperPlayer = new Player()
@@ -39,7 +41,8 @@ namespace RealManager.Services
                 Pace = 20,
                 Pass = 20,
                 Physical = 20,
-                Shoot = 20
+                Shoot = 20,
+                Position = Position.GK,
             };
 
             int dribleSuccessChance = attackPlayer.Drible + attackPlayer.Pace / 2 - 15 * time / attackPlayer.Physical;

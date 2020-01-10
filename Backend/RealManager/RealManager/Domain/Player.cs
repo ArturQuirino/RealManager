@@ -13,5 +13,6 @@ namespace RealManager.Domain
         public int Drible { get; set; }
         public int Defence { get; set; }
         public int Physical { get; set; }
+        public Position Position { get;set; }
     }
 }
