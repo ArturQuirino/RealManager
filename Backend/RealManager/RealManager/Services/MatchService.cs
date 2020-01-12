@@ -12,38 +12,12 @@ namespace RealManager.Services
 
         public bool RunMatchEvent(int time)
         {
-            var attackPlayer = new Player()
-            {
-                Defence = 80,
-                Drible = 80,
-                Pace = 80,
-                Pass = 80,
-                Physical = 80,
-                Shoot = 80,
-                Position = Position.ATA,
-            };
+            var TeamA = CreateRandomTeam();
+            var TeamB = CreateRandomTeam();
 
-            var defencePlayer = new Player()
-            {
-                Defence = 20,
-                Drible = 20,
-                Pace = 20,
-                Pass = 20,
-                Physical = 20,
-                Shoot = 20,
-                Position = Position.DF,
-            };
-
-            var goalKeeperPlayer = new Player()
-            {
-                Defence = 20,
-                Drible = 20,
-                Pace = 20,
-                Pass = 20,
-                Physical = 20,
-                Shoot = 20,
-                Position = Position.GK,
-            };
+            var attackPlayer = TeamA.Players.FirstOrDefault(p => p.Position == Position.ATA);
+            var defencePlayer = TeamB.Players.FirstOrDefault(p => p.Position == Position.ATA);
+            var goalKeeperPlayer = TeamB.Players.FirstOrDefault(p => p.Position == Position.ATA);
 
             int dribleSuccessChance = attackPlayer.Drible + attackPlayer.Pace / 2 - 15 * time / attackPlayer.Physical;
             var randomNumber = new Random();
@@ -83,6 +57,49 @@ namespace RealManager.Services
             if (ableToDefence) return false;
 
             return true;
+        }
+
+
+        private Team CreateRandomTeam() {
+            var team = new Team();
+            var goalkeeper = new Player()
+            {
+                Defence = 20,
+                Drible = 20,
+                Pace = 20,
+                Pass = 20,
+                Physical = 20,
+                Shoot = 20,
+                Position = Position.GK,
+            };
+
+            var defender = new Player()
+            {
+                Defence = 20,
+                Drible = 20,
+                Pace = 20,
+                Pass = 20,
+                Physical = 20,
+                Shoot = 20,
+                Position = Position.DF,
+            };
+
+            var attackPlayer = new Player()
+            {
+                Defence = 20,
+                Drible = 20,
+                Pace = 20,
+                Pass = 20,
+                Physical = 20,
+                Shoot = 20,
+                Position = Position.ATA,
+            };
+
+            team.Players.Add(goalkeeper);
+            team.Players.Add(defender);
+            team.Players.Add(attackPlayer);
+
+            return team;
         }
     }
 }
