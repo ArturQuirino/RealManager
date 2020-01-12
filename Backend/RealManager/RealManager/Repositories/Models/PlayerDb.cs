@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace RealManager.Domain
+namespace RealManager.Repositories.Models
 {
-    public class Player
+    public class PlayerDb
     {
-        public Guid Id { get;set; }
+        public string Id { get;set; }
         public string Name { get;set; }
         public int Pace { get; set; }
         public int Shoot { get; set; }

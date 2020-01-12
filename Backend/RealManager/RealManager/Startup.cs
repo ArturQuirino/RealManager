@@ -9,8 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using RealManager.Services;
 using RealManager.Services.Interfaces;
+using Repositories;
+using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace RealManager
 {
@@ -34,6 +38,16 @@ namespace RealManager
             });
 
             services.AddScoped<IMatchService, MatchService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+
+            services.Configure<MongoRepository>(
+                Configuration.GetSection(nameof(MongoRepository))
+            );
+
+            services.AddSingleton<IMongoRepository>(mdb => 
+                mdb.GetRequiredService<IOptions<MongoRepository>>().Value);
 
         
         }
