@@ -16,5 +16,6 @@ namespace RealManager.Domain
         public int Defence { get; set; }
         public int Physical { get; set; }
         public Position Position { get;set; }
+        public Guid TeamId { get;set; }
     }
 }
