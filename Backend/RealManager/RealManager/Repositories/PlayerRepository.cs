@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using RealManager.Domain;
 using RealManager.Repositories.Models;
-using Repositories.Interfaces;
+using RealManager.Repositories.Interfaces;
 
 namespace Repositories
 {
@@ -18,11 +18,17 @@ namespace Repositories
             _players = database.GetCollection<PlayerDb>("players");
         }
 
-        public List<PlayerDb> Get() =>
-            _players.Find(player => true).ToList();
+        public List<Player> GetAll()
+        {
+            var allPlayers = new List<Player>();
+            var playersDb = _players.Find(player => true).ToList();
+            playersDb.ForEach(playerdb => allPlayers.Add(MapPlayerDbToPlayer(playerdb)));
 
-        public PlayerDb Get(string id) =>
-            _players.Find(player => player.Id == id).FirstOrDefault();
+            return allPlayers;
+        }
+
+        public Player Get(string id) =>
+            MapPlayerDbToPlayer(_players.Find(player => player.Id == id).FirstOrDefault());
 
         public Player Create(Player player){
             var playerdb = MapPlayerToPlayerDb(player);
@@ -30,7 +36,7 @@ namespace Repositories
             return player;
         }
 
-        public void update(string id, PlayerDb playerdb) =>
+        public void Update(string id, PlayerDb playerdb) =>
             _players.ReplaceOne(player => player.Id == id, playerdb);
 
         public void Remove(PlayerDb playerDb) =>
@@ -50,6 +56,20 @@ namespace Repositories
                 Position = player.Position,
                 Shoot = player.Shoot,
                 Name = player.Name
+            };
+        }
+
+        private Player MapPlayerDbToPlayer(PlayerDb playerDb){
+            return new Player(){
+                Id = Guid.Parse(playerDb.Id),
+                Defence = playerDb.Defence,
+                Drible = playerDb.Drible,
+                Pace = playerDb.Pace,
+                Pass = playerDb.Pass,
+                Physical = playerDb.Physical,
+                Position = playerDb.Position,
+                Shoot = playerDb.Shoot,
+                Name = playerDb.Name
             };
         }
     }

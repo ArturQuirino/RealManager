@@ -24,5 +24,12 @@ namespace RealManager.Controllers
         {
             return _matchService.RunMatchEvent(time);
         }
+
+        [HttpPost]
+        [Route("/Friendly")]
+        public Match RunFriendly([FromBody]List<string> teams)
+        {
+            return _matchService.RunFriendly(Guid.Parse(teams.FirstOrDefault()), Guid.Parse(teams.LastOrDefault()));
+        }
     }
 }

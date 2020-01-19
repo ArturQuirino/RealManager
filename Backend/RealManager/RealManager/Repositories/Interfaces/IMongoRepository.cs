@@ -1,4 +1,4 @@
-namespace Repositories.Interfaces
+namespace RealManager.Repositories.Interfaces
 {
     public interface IMongoRepository
     {

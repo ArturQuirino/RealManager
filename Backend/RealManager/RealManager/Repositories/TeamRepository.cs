@@ -4,7 +4,6 @@ using MongoDB.Driver;
 using RealManager.Domain;
 using RealManager.Repositories.Interfaces;
 using RealManager.Repositories.Models;
-using Repositories.Interfaces;
 
 namespace RealManager.Repositories
 {

@@ -1,5 +1,5 @@
 using RealManager.Domain;
-using Repositories.Interfaces;
+using RealManager.Repositories.Interfaces;
 using Services.Interfaces;
 
 namespace RealManager.Services

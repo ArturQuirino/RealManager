@@ -2,17 +2,17 @@ using System.Collections.Generic;
 using RealManager.Domain;
 using RealManager.Repositories.Models;
 
-namespace Repositories.Interfaces
+namespace RealManager.Repositories.Interfaces
 {
     public interface IPlayerRepository
     {
-        List<PlayerDb> Get();
+        List<Player> GetAll();
 
-        PlayerDb Get(string id);
+        Player Get(string id);
 
         Player Create(Player playerdb);
 
-        void update(string id, PlayerDb playerdb);
+        void Update(string id, PlayerDb playerdb);
 
         void Remove(PlayerDb playerDb);
 

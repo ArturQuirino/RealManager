@@ -1,4 +1,5 @@
 ﻿using RealManager.Domain;
+using RealManager.Repositories.Interfaces;
 using RealManager.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,12 @@ namespace RealManager.Services
 {
     public class MatchService : IMatchService
     {
-
+        private readonly ITeamRepository _teamRepository;
+        private readonly IPlayerRepository _playerRepository;
+        public MatchService(ITeamRepository teamRepository, IPlayerRepository playerRepository){
+            _teamRepository = teamRepository;
+            _playerRepository = playerRepository;
+        }
         public bool RunMatchEvent(int time)
         {
             var TeamA = CreateRandomTeam();
@@ -59,6 +65,29 @@ namespace RealManager.Services
             return true;
         }
 
+        public Match RunFriendly(Guid homeTeamId, Guid awayTeamId)
+        {
+            var homeTeam = GetStartersTeam(homeTeamId);
+            var awayTeam = GetStartersTeam(awayTeamId);
+
+            Match match = new Match();
+
+            return match;
+        }
+
+        private Team GetStartersTeam(Guid teamId)
+        {
+            var team = _teamRepository.Get(teamId.ToString());
+
+            var teamStartersId = team.Starters.Select(starter => starter.Id);
+            team.Players = new List<Player>();
+
+            foreach(Guid starterId in teamStartersId){
+                team.Players.Add(_playerRepository.Get(starterId.ToString()));
+            }
+
+            return team;
+        }
 
         private Team CreateRandomTeam() {
             var team = new Team();

@@ -1,6 +1,6 @@
-using Repositories.Interfaces;
+using RealManager.Repositories.Interfaces;
 
-namespace Repositories
+namespace RealManager.Repositories
 {
     public class MongoRepository : IMongoRepository
     {        
