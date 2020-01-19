@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using RealManager.Repositories;
+using RealManager.Repositories.Interfaces;
 using RealManager.Services;
 using RealManager.Services.Interfaces;
 using Repositories;
@@ -39,8 +41,10 @@ namespace RealManager
 
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ITeamService, TeamService>();
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
 
             services.Configure<MongoRepository>(
                 Configuration.GetSection(nameof(MongoRepository))

@@ -11,7 +11,7 @@ namespace RealManager.Repositories.Interfaces
 
         Team Create(Team player);
 
-        void update(string id, Team team);
+        void Update(string id, Team team);
 
         void Remove(Team team);
 
