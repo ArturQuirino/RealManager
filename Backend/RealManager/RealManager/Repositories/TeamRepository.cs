@@ -61,8 +61,25 @@ namespace RealManager.Repositories
         }
 
         private Team MapTeamDbToTeam(TeamDb teamdb){
-            return new Team(){
+            var players = new List<Player>();
+            teamdb.Players.ForEach(playerId => players.Add(
+                new Player(){
+                    Id = Guid.Parse(playerId)
+                }
+            ));
 
+            var starters = new List<Player>();
+            teamdb.Starters.ForEach(starterId => starters.Add(
+                new Player(){
+                    Id = Guid.Parse(starterId)
+                }
+            ));
+
+            return new Team(){
+                Id = Guid.Parse(teamdb.Id),
+                Players = players,
+                Starters = starters,
+                Name = teamdb.Name
             };
         }
     }
