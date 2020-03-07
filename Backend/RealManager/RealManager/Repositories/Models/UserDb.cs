@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RealManager.Domain
+namespace RealManager.Repositories.Models
 {
-    public class User
+    public class UserDb
     {
-        public User()
-        {
-            Id = Guid.NewGuid();
-        }
         public Guid Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,9 +42,11 @@ namespace RealManager
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.Configure<MongoRepository>(
                 Configuration.GetSection(nameof(MongoRepository))
@@ -52,7 +55,11 @@ namespace RealManager
             services.AddSingleton<IMongoRepository>(mdb => 
                 mdb.GetRequiredService<IOptions<MongoRepository>>().Value);
 
-        
+
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

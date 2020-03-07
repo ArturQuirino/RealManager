@@ -7,16 +7,22 @@ namespace RealManager.Services
 {
     public class UserService : IUserService
     {
-        public UserService(){
+        private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository){
+            _userRepository = userRepository;
         }
 
         public User CreateUser(string email, string password, string teamName){
-            User user = new User();
-            user.Email = email;
-            user.Password = password;
-            user.TeamName = teamName;
-            user.TeamId = Guid.NewGuid();
-            return user;
+            User user = new User
+            {
+                Email = email,
+                Password = password,
+                TeamId = Guid.NewGuid()
+            };
+
+            var addedUser = _userRepository.Add(user);
+
+            return addedUser;
         }
     }
 }
