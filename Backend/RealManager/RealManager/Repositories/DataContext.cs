@@ -20,6 +20,8 @@ namespace RealManager.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) { }
         public DbSet<UserDb> Users { get; set; }
+        public DbSet<TeamDb> Teams { get; set; }
+        public DbSet<PlayerDb> Players { get; set; }
 
     }
 }

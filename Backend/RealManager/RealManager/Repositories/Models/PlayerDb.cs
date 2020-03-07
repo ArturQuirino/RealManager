@@ -9,7 +9,7 @@ namespace RealManager.Repositories.Models
 {
     public class PlayerDb
     {
-        public string Id { get;set; }
+        public Guid Id { get;set; }
         public string Name { get;set; }
         public int Pace { get; set; }
         public int Shoot { get; set; }
@@ -17,7 +17,7 @@ namespace RealManager.Repositories.Models
         public int Drible { get; set; }
         public int Defence { get; set; }
         public int Physical { get; set; }
-        public Position Position { get; set; }
-        public string TeamId { get; set; }
+        public int Position { get; set; }
+        public Guid TeamId { get; set; }
     }
 }

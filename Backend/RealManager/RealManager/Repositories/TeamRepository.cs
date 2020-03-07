@@ -9,78 +9,34 @@ namespace RealManager.Repositories
 {
     public class TeamRepository : ITeamRepository
     {
-        private readonly IMongoCollection<TeamDb> _teams;
-
-        public TeamRepository(IMongoRepository settings){
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            _teams = database.GetCollection<TeamDb>("teams");
+        private DataContext _dataContext;
+        public TeamRepository(DataContext dataContext)
+        {
+            _dataContext = dataContext;
         }
-
-        public List<Team> Get(){
-            var teamList = new List<Team>();
-            var teamdbList = _teams.Find(team => true).ToList();
-            teamdbList.ForEach(teamdb => teamList.Add(MapTeamDbToTeam(teamdb)));
-
-            return teamList;
-        }
-            
-
-        public Team Get(string id) =>
-            MapTeamDbToTeam(_teams.Find(team => team.Id == id).FirstOrDefault());
-
-        public Team Create(Team team){
-            var teamdb = MapTeamToTeamDb(team);
-            _teams.InsertOne(teamdb);
-            return team;
-        }
-
-        public void Update(string id, Team team) =>
-            _teams.ReplaceOne(team => team.Id == id, MapTeamToTeamDb(team));
-
-        public void Remove(Team team) =>
-            _teams.DeleteOne(teamdb => teamdb.Id == team.Id.ToString());
-
-        public void Remove(string id) =>
-            _teams.DeleteOne(teamdb => teamdb.Id == id);
-
-        private TeamDb MapTeamToTeamDb(Team team){
-            var players = new List<string>();
-            team.Players.ForEach(player => players.Add(player.Id.ToString()));
-
-            var starters = new List<string>();
-            team.Starters.ForEach(starter => starters.Add(starter.Id.ToString()));
-
-            return new TeamDb(){
-                Id = team.Id.ToString(),
+        public Team Create(Team team)
+        {
+            TeamDb teamDb = new TeamDb
+            {
+                Id = team.Id,
                 Name = team.Name,
-                Players = players,
-                Starters = starters
+                Starter1Id = team.Starters[0].Id,
+                Starter2Id = team.Starters[1].Id,
+                Starter3Id = team.Starters[2].Id,
+                Starter4Id = team.Starters[3].Id,
+                Starter5Id = team.Starters[4].Id,
+                Starter6Id = team.Starters[5].Id,
+                Starter7Id = team.Starters[6].Id,
+                Starter8Id = team.Starters[7].Id,
+                Starter9Id = team.Starters[8].Id,
+                Starter10Id = team.Starters[9].Id,
+                Starter11Id = team.Starters[10].Id,
             };
-        }
 
-        private Team MapTeamDbToTeam(TeamDb teamdb){
-            var players = new List<Player>();
-            teamdb.Players.ForEach(playerId => players.Add(
-                new Player(){
-                    Id = Guid.Parse(playerId)
-                }
-            ));
+            _dataContext.Teams.Add(teamDb);
+            _dataContext.SaveChanges();
 
-            var starters = new List<Player>();
-            teamdb.Starters.ForEach(starterId => starters.Add(
-                new Player(){
-                    Id = Guid.Parse(starterId)
-                }
-            ));
-
-            return new Team(){
-                Id = Guid.Parse(teamdb.Id),
-                Players = players,
-                Starters = starters,
-                Name = teamdb.Name
-            };
+            return team;
         }
     }
 }

@@ -4,6 +4,10 @@ namespace RealManager.Domain
 {
     public class Player
     {
+        public Player()
+        {
+            Id = Guid.NewGuid();
+        }
         public Guid Id { get;set; }
         public string Name { get;set; }
         public int Pace { get; set; }

@@ -15,7 +15,7 @@ namespace RealManager.Repositories
         {
             _dataContext = dataContext;
         }
-        public User Add(User user)
+        public User Create(User user)
         {
             UserDb userDb = new UserDb();
             userDb.Email = user.Email;

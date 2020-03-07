@@ -189,16 +189,17 @@ namespace RealManager.Services
 
         public Team GetStartersTeam(Guid teamId)
         {
-            var team = _teamRepository.Get(teamId.ToString());
+            //var team = _teamRepository.Get(teamId.ToString());
 
-            var teamStartersId = team.Starters.Select(starter => starter.Id);
-            team.Starters = new List<Player>();
+            //var teamStartersId = team.Starters.Select(starter => starter.Id);
+            //team.Starters = new List<Player>();
 
-            foreach(Guid starterId in teamStartersId){
-                team.Starters.Add(_playerRepository.Get(starterId.ToString()));
-            }
+            //foreach(Guid starterId in teamStartersId){
+            //    team.Starters.Add(_playerRepository.Get(starterId.ToString()));
+            //}
 
-            return team;
+            //return team;
+            return null;
         }
 
         private Team CreateRandomTeam() {

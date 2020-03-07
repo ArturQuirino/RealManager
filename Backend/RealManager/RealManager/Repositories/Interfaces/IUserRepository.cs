@@ -8,6 +8,6 @@ namespace RealManager.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        User Add(User user);
+        User Create(User user);
     }
 }
