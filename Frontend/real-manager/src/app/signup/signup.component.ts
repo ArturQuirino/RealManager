@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  signUpForm;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.signUpForm = this.formBuilder.group({
+      email: '',
+      password: '',
+      teamName: ''
+    });
+  }
 
   ngOnInit() {
+  }
+
+  onSubmitSignUpForm(formValues) {
+    console.log(formValues);
   }
 
 }
