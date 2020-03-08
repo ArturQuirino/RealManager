@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MongoDB.Driver;
 using RealManager.Domain;
 using RealManager.Repositories.Interfaces;
@@ -37,6 +38,57 @@ namespace RealManager.Repositories
             _dataContext.SaveChanges();
 
             return team;
+        }
+
+
+        public Team Get(Guid teamId)
+        {
+            var teamDb = _dataContext.Teams
+                        .Single(team => team.Id == teamId);
+
+            var playersDbFromTeam = _dataContext.Players.Where(player => player.TeamId == teamId).ToList();
+
+            var playersFromTeam = new List<Player>();
+
+            foreach(PlayerDb playerDb in playersDbFromTeam)
+            {
+                playersFromTeam.Add(new Player()
+                {
+                    Id = playerDb.Id,
+                    Defence = playerDb.Defence,
+                    Drible = playerDb.Drible,
+                    Name = playerDb.Name,
+                    Pace = playerDb.Pace,
+                    Pass = playerDb.Pass,
+                    Physical = playerDb.Physical,
+                    Position = (Position)playerDb.Position,
+                    Shoot = playerDb.Shoot,
+                    TeamId = playerDb.TeamId
+                });
+            }
+
+            Team team = new Team();
+            team.Id = teamDb.Id;
+            team.Name = teamDb.Name;
+            team.Players = playersFromTeam;
+            team.Starters = playersFromTeam
+                .Where(player => 
+                    player.Id == teamDb.Starter1Id ||
+                    player.Id == teamDb.Starter2Id ||
+                    player.Id == teamDb.Starter3Id ||
+                    player.Id == teamDb.Starter4Id ||
+                    player.Id == teamDb.Starter5Id ||
+                    player.Id == teamDb.Starter6Id ||
+                    player.Id == teamDb.Starter7Id ||
+                    player.Id == teamDb.Starter8Id ||
+                    player.Id == teamDb.Starter9Id ||
+                    player.Id == teamDb.Starter10Id ||
+                    player.Id == teamDb.Starter11Id
+                    ).ToList();
+
+            return team;
+
+
         }
     }
 }
