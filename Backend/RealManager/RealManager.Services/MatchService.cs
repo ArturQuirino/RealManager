@@ -23,7 +23,7 @@ namespace RealManager.Services
             var homeTeam = GetStartersTeam(homeTeamId);
             var awayTeam = GetStartersTeam(awayTeamId);
 
-            Match currentMatch = new Match(homeTeamId, awayTeamId);
+            Match currentMatch = new Match(homeTeam.Id, homeTeam.Name, awayTeam.Id, awayTeam.Name);
 
             for (int minute = 0; minute <= 90; minute++)
             {

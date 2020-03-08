@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using MongoDB.Driver;
 using RealManager.Domain;
 using RealManager.Repositories.Models;
 using RealManager.Repositories.Interfaces;
