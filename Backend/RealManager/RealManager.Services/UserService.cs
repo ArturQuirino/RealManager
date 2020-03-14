@@ -1,6 +1,7 @@
 using RealManager.Domain;
 using RealManager.Repositories.Interfaces;
 using RealManager.Services.Interfaces;
+using System;
 
 namespace RealManager.Services
 {
@@ -28,6 +29,22 @@ namespace RealManager.Services
             var addedUser = _userRepository.Create(user);
 
             return addedUser;
+        }
+
+        public User Login(string email, string password)
+        {
+            User user = _userRepository.GetByEmail(email);
+            if(user == null)
+            {
+                throw new Exception();
+            }
+
+            if(user.Password != password)
+            {
+                throw new Exception();
+            }
+
+            return user;
         }
     }
 }

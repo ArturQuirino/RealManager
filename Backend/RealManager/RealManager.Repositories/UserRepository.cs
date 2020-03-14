@@ -29,5 +29,25 @@ namespace RealManager.Repositories
 
             return user;
         }
+
+        public User GetByEmail(string email)
+        {
+            UserDb userDb = _dataContext.Users.FirstOrDefault(u => u.Email == email);
+
+            if(userDb == null)
+            {
+                return null;
+            }
+
+            User user = new User()
+            {
+                Email = userDb.Email,
+                Id = userDb.Id,
+                TeamId = userDb.TeamId,
+                Password = userDb.Password
+            };
+
+            return user;
+        }
     }
 }

@@ -5,7 +5,7 @@ using RealManager.Services.Interfaces;
 namespace RealManager.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TeamController : ControllerBase
     {
         private readonly ITeamService _teamService;

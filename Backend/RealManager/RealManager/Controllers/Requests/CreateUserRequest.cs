@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RealManager.Controllers.Requests
 {
-    public class UserRequest
+    public class CreateUserRequest
     {
         public string Email { get; set; }
         public string Password { get; set; }

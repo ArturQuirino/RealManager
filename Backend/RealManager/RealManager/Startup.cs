@@ -47,13 +47,6 @@ namespace RealManager
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.Configure<MongoRepository>(
-                Configuration.GetSection(nameof(MongoRepository))
-            );
-
-            services.AddSingleton<IMongoRepository>(mdb => 
-                mdb.GetRequiredService<IOptions<MongoRepository>>().Value);
-
 
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));

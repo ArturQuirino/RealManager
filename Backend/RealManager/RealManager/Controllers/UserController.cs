@@ -21,10 +21,17 @@ namespace RealManager.Controllers
         }
 
         [HttpPost]
-        [Route("/")]
-        public User RunFriendly([FromBody]UserRequest createUserRequest)
+        [Route("")]
+        public User CreateUser([FromBody]CreateUserRequest createUserRequest)
         {
             return _userService.CreateUser(createUserRequest.Email, createUserRequest.Password, createUserRequest.TeamName);
+        }
+
+        [HttpPost]
+        [Route("/Login")]
+        public User Login([FromBody]LoginUserRequest loginUserRequest)
+        {
+            return _userService.Login(loginUserRequest.Email, loginUserRequest.Password);
         }
     }
 }

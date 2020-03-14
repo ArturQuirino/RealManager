@@ -9,5 +9,6 @@ namespace RealManager.Services.Interfaces
     public interface IUserService
     {
         User CreateUser(string email, string password, string teamName);
+        User Login(string email, string password);
     }
 }

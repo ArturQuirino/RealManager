@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RealManager.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MatchController : ControllerBase
     {
         private readonly IMatchService _matchService;
