@@ -65,3 +65,5 @@ bin/
 .vs/
 .vscode
 packages-microsoft-prod.deb
+appsettings.Development.json
+
