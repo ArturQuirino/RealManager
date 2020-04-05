@@ -5,7 +5,7 @@ namespace RealManager.Shared
 {
     public static class Constants
     {
-        public static List<string> POSSIBLE_NAMES = new List<string>()
+        public static readonly List<string> POSSIBLENAMES = new List<string>()
         {
             "James",
             "John",
@@ -34,7 +34,7 @@ namespace RealManager.Shared
             "Edward"
         };
 
-        public static List<string> POSSIBLE_SURNAMES = new List<string>()
+        public static readonly List<string> POSSIBLESURNAMES = new List<string>()
         {
             "Smith",
             "Johnson",

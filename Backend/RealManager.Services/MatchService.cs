@@ -36,9 +36,9 @@ namespace RealManager.Services
             return currentMatch;
         }
 
-        private Event RunEvent(Match match, int minute, Team homeTeam, Team awayTeam)
+        private MatchEvent RunEvent(Match match, int minute, Team homeTeam, Team awayTeam)
         {
-            Event singleEvent = new Event(match);
+            MatchEvent singleEvent = new MatchEvent(match);
 
             var randomNumber = new Random();
 
@@ -121,12 +121,12 @@ namespace RealManager.Services
             return singleEvent;
         }
 
-        private Player SelectGoalkeeper(Team team)
+        private static Player SelectGoalkeeper(Team team)
         {
             return team.Starters.FirstOrDefault(starter => starter.Position == Position.GK);
         }
 
-        private Player SelectDefencePlayer(Team team)
+        private static Player SelectDefencePlayer(Team team)
         {
             var defenders = team.Starters.Where(starter => starter.Position == Position.DF).ToList();
             var random = new Random();
@@ -134,7 +134,7 @@ namespace RealManager.Services
             return defenders[index];
         }
 
-        private Player SelectAttackPlayer(Team team)
+        private static Player SelectAttackPlayer(Team team)
         {
             var attackers = team.Starters.Where(starter => starter.Position == Position.ATA).ToList();
             var random = new Random();

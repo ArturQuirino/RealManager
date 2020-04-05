@@ -22,10 +22,10 @@ namespace RealManager.Services
             Player newPlayer = new Player();
 
             var random = new Random();
-            int randomNameIndex = random.Next(Constants.POSSIBLE_NAMES.Count);
-            int randomSurnameIndex = random.Next(Constants.POSSIBLE_SURNAMES.Count);
+            int randomNameIndex = random.Next(Constants.POSSIBLENAMES.Count);
+            int randomSurnameIndex = random.Next(Constants.POSSIBLESURNAMES.Count);
 
-            newPlayer.Name = Constants.POSSIBLE_NAMES[randomNameIndex] + ' ' + Constants.POSSIBLE_SURNAMES[randomSurnameIndex];
+            newPlayer.Name = Constants.POSSIBLENAMES[randomNameIndex] + ' ' + Constants.POSSIBLESURNAMES[randomSurnameIndex];
 
             newPlayer.Pace = random.Next(0, 100);
             newPlayer.Pass = random.Next(0, 100);

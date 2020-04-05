@@ -24,6 +24,10 @@ namespace RealManager.Controllers
         [Route("")]
         public User CreateUser([FromBody]CreateUserRequest createUserRequest)
         {
+            if(createUserRequest == null)
+            {
+                throw new ArgumentNullException(nameof(createUserRequest));
+            }
             return _userService.CreateUser(createUserRequest.Email, createUserRequest.Password, createUserRequest.TeamName);
         }
 
@@ -31,6 +35,10 @@ namespace RealManager.Controllers
         [Route("/Login")]
         public User Login([FromBody]LoginUserRequest loginUserRequest)
         {
+            if (loginUserRequest == null)
+            {
+                throw new ArgumentNullException(nameof(loginUserRequest));
+            }
             return _userService.Login(loginUserRequest.Email, loginUserRequest.Password);
         }
     }

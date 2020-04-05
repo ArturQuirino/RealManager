@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace RealManager.Domain
 {
@@ -13,7 +14,7 @@ namespace RealManager.Domain
             AwayTeamName = awayTeamName;
             HomeGoals = 0;
             AwayGoals = 0;
-            Events = new List<Event>();
+            Events = new List<MatchEvent>();
         }
         
         public Guid Id { get;set; }
@@ -25,12 +26,12 @@ namespace RealManager.Domain
         public int AwayGoals { get; set; }
         public string FinalResult { 
             get{
-                return HomeTeamName + " " +  HomeGoals.ToString() + " : " + AwayGoals.ToString() + " " + AwayTeamName;
+                return HomeTeamName + " " +  HomeGoals.ToString(new CultureInfo("en-US")) + " : " + AwayGoals.ToString(new CultureInfo("en-US")) + " " + AwayTeamName;
             }
             set{
                 FinalResult = value;
             }
         }
-        public List<Event> Events { get; set; }
+        public List<MatchEvent> Events { get; }
     }
 }
