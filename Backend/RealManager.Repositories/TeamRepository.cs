@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RealManager.Domain;
+using RealManager.Domain.Enums;
 using RealManager.Repositories.Interfaces;
 using RealManager.Repositories.Models;
 
@@ -69,8 +70,8 @@ namespace RealManager.Repositories
             Team team = new Team();
             team.Id = teamDb.Id;
             team.Name = teamDb.Name;
-            team.Players = playersFromTeam;
-            team.Starters = playersFromTeam
+            team.Players.AddRange(playersFromTeam);
+            team.Starters.AddRange(playersFromTeam
                 .Where(player => 
                     player.Id == teamDb.Starter1Id ||
                     player.Id == teamDb.Starter2Id ||
@@ -83,7 +84,7 @@ namespace RealManager.Repositories
                     player.Id == teamDb.Starter9Id ||
                     player.Id == teamDb.Starter10Id ||
                     player.Id == teamDb.Starter11Id
-                    ).ToList();
+                    ));
 
             return team;
 

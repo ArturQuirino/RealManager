@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealManager.Repositories.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealManager.Repositories
 {
@@ -13,12 +9,14 @@ namespace RealManager.Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (optionsBuilder!= null && !optionsBuilder.IsConfigured)
             {
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) { 
+            // Cleaning Model Creation
+        }
         public DbSet<UserDb> Users { get; set; }
         public DbSet<TeamDb> Teams { get; set; }
         public DbSet<PlayerDb> Players { get; set; }

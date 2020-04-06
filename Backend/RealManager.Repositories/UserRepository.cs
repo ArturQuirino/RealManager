@@ -1,10 +1,7 @@
 ﻿using RealManager.Domain;
 using RealManager.Repositories.Interfaces;
 using RealManager.Repositories.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealManager.Repositories
 {

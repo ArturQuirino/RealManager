@@ -66,4 +66,5 @@ bin/
 .vscode
 packages-microsoft-prod.deb
 appsettings.Development.json
+.sonarqube/*
 

@@ -1,4 +1,5 @@
 using RealManager.Domain;
+using RealManager.Domain.Enums;
 using RealManager.Repositories.Interfaces;
 using RealManager.Shared;
 using Services.Interfaces;
@@ -22,8 +23,8 @@ namespace RealManager.Services
             Player newPlayer = new Player();
 
             var random = new Random();
-            int randomNameIndex = random.Next(Constants.POSSIBLENAMES.Count);
-            int randomSurnameIndex = random.Next(Constants.POSSIBLESURNAMES.Count);
+            int randomNameIndex = random.Next(Constants.POSSIBLENAMES.Length);
+            int randomSurnameIndex = random.Next(Constants.POSSIBLESURNAMES.Length);
 
             newPlayer.Name = Constants.POSSIBLENAMES[randomNameIndex] + ' ' + Constants.POSSIBLESURNAMES[randomSurnameIndex];
 

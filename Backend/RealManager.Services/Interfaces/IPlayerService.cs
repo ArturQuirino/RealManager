@@ -1,4 +1,5 @@
 using RealManager.Domain;
+using RealManager.Domain.Enums;
 using System;
 
 namespace Services.Interfaces

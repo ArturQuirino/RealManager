@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealManager.Domain.Enums;
+using System;
 
 namespace RealManager.Domain
 {

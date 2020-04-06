@@ -1,4 +1,5 @@
 using RealManager.Domain;
+using RealManager.Domain.Enums;
 using RealManager.Repositories.Interfaces;
 using RealManager.Services.Interfaces;
 using Services.Interfaces;
