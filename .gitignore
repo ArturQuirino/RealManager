@@ -67,4 +67,5 @@ bin/
 packages-microsoft-prod.deb
 appsettings.Development.json
 .sonarqube/*
+*/.sonarqube/*
 
