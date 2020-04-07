@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { LeagueComponent } from './league/league.component';
 import { MainHeaderComponent } from './shared/components/main-header/main-header.component';
+import { MatchesComponent } from './matches/matches.component';
+import { SquadComponent } from './squad/squad.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,14 @@ const routes: Routes = [
       {
         path: 'league',
         component: LeagueComponent
+      },
+      {
+        path: 'matches',
+        component: MatchesComponent
+      },
+      {
+        path: 'squad',
+        component: SquadComponent
       }
     ]
   },

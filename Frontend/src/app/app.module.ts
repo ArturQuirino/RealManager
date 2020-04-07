@@ -8,6 +8,8 @@ import { MaterialModule } from './shared/modules/material.module';
 import { SignupComponent } from './signup/signup.component';
 import { LeagueComponent } from './league/league.component';
 import { MainHeaderComponent } from './shared/components/main-header/main-header.component';
+import { MatchesComponent } from './matches/matches.component';
+import { SquadComponent } from './squad/squad.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { MainHeaderComponent } from './shared/components/main-header/main-header
     LoginComponent,
     SignupComponent,
     LeagueComponent,
-    MainHeaderComponent
+    MainHeaderComponent,
+    MatchesComponent,
+    SquadComponent
   ],
   imports: [
     BrowserModule,
