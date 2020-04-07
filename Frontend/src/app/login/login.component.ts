@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   signin(loginData: any) {
     console.log(loginData);
-    this.router.navigate(['/league']);
+    this.router.navigate(['/main']);
   }
 
 }
