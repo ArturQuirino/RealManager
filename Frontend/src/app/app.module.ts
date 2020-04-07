@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './shared/modules/material.module';
 import { SignupComponent } from './signup/signup.component';
+import { LeagueComponent } from './league/league.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LeagueComponent
   ],
   imports: [
     BrowserModule,

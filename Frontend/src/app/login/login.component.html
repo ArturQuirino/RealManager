@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form [formGroup]="loginForm" class="form-container">
+  <form [formGroup]="loginForm" class="form-container" (ngSubmit)="signin(loginForm.value)">
     <label>Real Manager</label>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Email" type="email" />
