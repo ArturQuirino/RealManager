@@ -24,7 +24,7 @@ const matches: Matches[] = [
 })
 export class MatchesComponent implements OnInit {
 
-  displayedColumns: string[] = ['homeTeam', 'finalResult', 'awayTeam'];
+  displayedColumns: string[] = ['homeTeam'];
   matchesDataSource = matches;
 
   constructor() { }

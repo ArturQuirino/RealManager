@@ -7,16 +7,14 @@
     .matches-table {
         width: 40%;
 
-        .home-team {
-            text-align: start;
+        .resumo-partida {
+            display: flex;
+            justify-content: space-between;
         }
 
-        .final-result {
-            text-align: center;
-        }
 
-        .away-team {
-            text-align: end;
+        .match-button {
+            width: 100%;
         }
     }
 }
