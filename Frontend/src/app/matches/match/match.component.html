@@ -1,1 +1,10 @@
-<p>match works!</p>
+<a routerLink="..">
+    <mat-icon svgIcon="arrow-back" aria-hidden="false" aria-label="Navigate back"></mat-icon>
+</a>
+<section class="section-container">
+    <h1>IGTI 2 x 0 PUC</h1>
+    <div *ngFor="let matchEvent of matchEvents" class="match-event">
+        <p>{{matchEvent.description}}</p>
+    </div>
+</section>
+

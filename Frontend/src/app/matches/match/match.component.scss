@@ -1,0 +1,12 @@
+.section-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10%;
+
+    .match-event {
+        border: 1px solid #ccc;
+        padding: 0 20px;
+        width: 30%;
+    }
+}
