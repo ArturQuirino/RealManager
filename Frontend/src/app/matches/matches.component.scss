@@ -1,0 +1,22 @@
+.section-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10%;
+
+    .matches-table {
+        width: 40%;
+
+        .home-team {
+            text-align: start;
+        }
+
+        .final-result {
+            text-align: center;
+        }
+
+        .away-team {
+            text-align: end;
+        }
+    }
+}
