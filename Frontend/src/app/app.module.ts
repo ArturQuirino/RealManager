@@ -10,6 +10,7 @@ import { LeagueComponent } from './league/league.component';
 import { MainHeaderComponent } from './shared/components/main-header/main-header.component';
 import { MatchesComponent } from './matches/matches.component';
 import { SquadComponent } from './squad/squad.component';
+import { MatchComponent } from './matches/match/match.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SquadComponent } from './squad/squad.component';
     LeagueComponent,
     MainHeaderComponent,
     MatchesComponent,
-    SquadComponent
+    SquadComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { LeagueComponent } from './league/league.component';
 import { MainHeaderComponent } from './shared/components/main-header/main-header.component';
 import { MatchesComponent } from './matches/matches.component';
 import { SquadComponent } from './squad/squad.component';
+import { MatchComponent } from './matches/match/match.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'matches',
         component: MatchesComponent
+      },
+      {
+        path: 'matches/:id',
+            component: MatchComponent
       },
       {
         path: 'squad',

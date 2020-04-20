@@ -4,17 +4,18 @@ export interface Matches {
   homeTeam: string;
   finalResult: string;
   awayTeam: string;
+  id: string;
 }
 
 const matches: Matches[] = [
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0'}
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
+  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'}
 ];
 
 @Component({
