@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginApiService } from '../shared/services/login-api.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,18 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private router: Router) { }
+  usarioSenhaInvalido = false;
+
+  constructor(private router: Router, private loginApiService: LoginApiService) { }
 
   ngOnInit() {
   }
 
   signin(loginData: any) {
-    console.log(loginData);
-    this.router.navigate(['/main']);
+    this.loginApiService.login(loginData.email, loginData.password).subscribe(
+      () => this.router.navigate(['/main']),
+      () => this.usarioSenhaInvalido = true
+    );
   }
 
 }

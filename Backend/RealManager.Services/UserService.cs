@@ -36,12 +36,12 @@ namespace RealManager.Services
             User user = _userRepository.GetByEmail(email);
             if(user == null)
             {
-                throw new Exception();
+                throw new UnauthorizedAccessException();
             }
 
             if(user.Password != password)
             {
-                throw new Exception();
+                throw new UnauthorizedAccessException();
             }
 
             return user;
