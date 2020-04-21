@@ -41,7 +41,7 @@ namespace RealManager.Repositories
         }
 
 
-        public Team Get(Guid teamId)
+        public Team GetTeam(Guid teamId)
         {
             var teamDb = _dataContext.Teams
                         .Single(team => team.Id == teamId);

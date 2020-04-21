@@ -145,7 +145,7 @@ namespace RealManager.Services
 
         public Team GetStartersTeam(Guid teamId)
         {
-            return _teamRepository.Get(teamId);
+            return _teamRepository.GetTeam(teamId);
         }
 
         private Team CreateRandomTeam() {

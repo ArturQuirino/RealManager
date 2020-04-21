@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RealManager.Domain;
 using RealManager.Services.Interfaces;
+using System;
 
 namespace RealManager.Controllers
 {
@@ -19,6 +20,13 @@ namespace RealManager.Controllers
         public Team Post([FromBody]Team team)
         {
             return _teamService.CreateTeam(team);
+        }
+
+        [HttpGet]
+        [Route("{teamId}")]
+        public Team Get([FromRoute]Guid teamId)
+        {
+            return _teamService.GetTeam(teamId);
         }
     }
 }

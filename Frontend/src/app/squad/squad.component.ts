@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamApiService, TeamApi, PlayerApi } from '../shared/services/team-api.service';
 
-export interface Player {
+interface Player {
   starter: boolean;
-  position: string;
+  position: Position;
   name: string;
   overall: number;
   pace: number;
@@ -13,28 +14,9 @@ export interface Player {
   physical: number;
 }
 
-const TEAM_PLAYERS: Player[] = [
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-  {starter: false, position: 'GK', name: 'Dida', overall: 88, pace: 88,
-  shoot: 88, pass: 88, drible: 88, defence: 88, physical: 88},
-];
+enum Position {
+  GK, DF, MF, ATA
+}
 
 @Component({
   selector: 'app-squad',
@@ -43,12 +25,39 @@ const TEAM_PLAYERS: Player[] = [
 })
 export class SquadComponent implements OnInit {
 
+  teamId = 'EDB9AA90-8F9F-43DF-87EA-E818911B0DF3';
   starter = false;
-  squadDataSource = TEAM_PLAYERS;
+  teamName: string;
+  squadDataSource: Player[] = [];
   displayedColumns = ['starter', 'position', 'name', 'overall', 'pace', 'shoot', 'pass', 'drible', 'defence', 'physical'];
-  constructor() { }
+
+  constructor(private teamApiService: TeamApiService) { }
 
   ngOnInit(): void {
+    this.teamApiService.getTeam(this.teamId).subscribe((team: TeamApi) => {
+      this.teamName = team.name;
+      const teamPlayers: Player[] = [];
+      team.players.forEach((player: PlayerApi) => {
+        teamPlayers.push({
+          defence: player.defence,
+          drible: player.drible,
+          name: player.name,
+          overall: player.overall,
+          pace: player.pace,
+          pass: player.pass,
+          physical: player.physical,
+          position: player.position,
+          shoot: player.shoot,
+          starter: team.starters.some(p => p.id === player.id)
+        });
+      });
+      teamPlayers.sort((a, b) => a.position - b.position);
+      this.squadDataSource = teamPlayers;
+    });
+  }
+
+  getPlayerPosition(positionId: number): string {
+    return Position[positionId];
   }
 
 }

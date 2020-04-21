@@ -3,6 +3,7 @@ using RealManager.Domain.Enums;
 using RealManager.Repositories.Interfaces;
 using RealManager.Services.Interfaces;
 using Services.Interfaces;
+using System;
 
 namespace RealManager.Services
 {
@@ -18,6 +19,11 @@ namespace RealManager.Services
 
         public Team CreateTeam(Team team){
             return _teamRepository.Create(team);
+        }
+
+        public Team GetTeam(Guid teamId)
+        {
+            return _teamRepository.GetTeam(teamId);
         }
 
         public Team CreateRandomTeam(string teamName)
