@@ -1,13 +1,15 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" class="form-container" (ngSubmit)="signin(loginForm.value)">
-    <label>Real Manager</label>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" type="email" />
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Password" type="password"/>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Sign in</button>
-  </form>
-  <a mat-button color="primary" routerLink="/signup"  routerLinkActive="active">Sign up</a>
+<div class="login-page">
+  <div class="login-container">
+    <h1 class="logo-header">Real Manager</h1>
+    <form [formGroup]="loginForm" class="form-container" (ngSubmit)="signin(loginForm.value)">
+      <mat-form-field>
+        <input matInput placeholder="Email" type="email" />
+      </mat-form-field>
+      <mat-form-field class="form__label-password">
+        <input matInput placeholder="Password" type="password"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Sign in</button>
+    </form>
+    <a mat-button color="primary" routerLink="/signup"  routerLinkActive="active">Sign up</a>
+  </div>
 </div>

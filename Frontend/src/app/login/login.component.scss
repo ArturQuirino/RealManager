@@ -1,29 +1,55 @@
 
-.login-container {
+.login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 
-    .form-container {
+    .login-container {
+        background-color: #F2F2F5;
+        border: 1px solid #ccc;
+        border-radius: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 30%;
+        height: 70%;
 
-        .form__label-email {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .logo-header {
+            margin: 0 0 10% 0;
+            color: #707070;
         }
 
-        .form__label-password{ 
+        .form-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+    
+            .form__label-email {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .form__label-password { 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 0 0 10% 0;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        a {
+            width: 40%;
         }
     }
 }
