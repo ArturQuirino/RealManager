@@ -4,6 +4,7 @@ using RealManager.Repositories.Interfaces;
 using RealManager.Shared;
 using Services.Interfaces;
 using System;
+using System.Linq;
 
 namespace RealManager.Services
 {
@@ -34,6 +35,14 @@ namespace RealManager.Services
             newPlayer.Defence = random.Next(0, 100);
             newPlayer.Shoot = random.Next(0, 100);
             newPlayer.Drible = random.Next(0, 100);
+            newPlayer.Overall = Convert.ToInt32(Queryable.Average((new int[] {
+                newPlayer.Pace,
+                newPlayer.Pass,
+                newPlayer.Physical,
+                newPlayer.Defence,
+                newPlayer.Shoot,
+                newPlayer.Drible,
+            }).AsQueryable()));
 
             if (position.HasValue)
             {

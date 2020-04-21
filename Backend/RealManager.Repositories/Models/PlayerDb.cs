@@ -13,6 +13,7 @@ namespace RealManager.Repositories.Models
         public int Defence { get; set; }
         public int Physical { get; set; }
         public int Position { get; set; }
+        public int Overall { get; set; }
         public Guid TeamId { get; set; }
     }
 }

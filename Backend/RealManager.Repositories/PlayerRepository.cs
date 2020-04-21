@@ -24,6 +24,7 @@ namespace RealManager.Repositories
                 Physical = player.Physical,
                 Position = (int)player.Position,
                 Shoot = player.Shoot,
+                Overall = player.Overall,
                 TeamId = player.TeamId
             };
 

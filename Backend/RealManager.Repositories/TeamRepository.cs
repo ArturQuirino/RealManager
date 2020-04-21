@@ -63,7 +63,8 @@ namespace RealManager.Repositories
                     Physical = playerDb.Physical,
                     Position = (Position)playerDb.Position,
                     Shoot = playerDb.Shoot,
-                    TeamId = playerDb.TeamId
+                    TeamId = playerDb.TeamId,
+                    Overall = playerDb.Overall
                 });
             }
 

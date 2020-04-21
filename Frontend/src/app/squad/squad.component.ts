@@ -25,7 +25,7 @@ enum Position {
 })
 export class SquadComponent implements OnInit {
 
-  teamId = 'EDB9AA90-8F9F-43DF-87EA-E818911B0DF3';
+  teamId = '8FBEC11C-FED1-42B0-96B8-1000D0D33BB2';
   starter = false;
   teamName: string;
   squadDataSource: Player[] = [];
