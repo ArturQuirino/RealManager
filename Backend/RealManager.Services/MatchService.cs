@@ -3,6 +3,7 @@ using RealManager.Domain.Enums;
 using RealManager.Repositories.Interfaces;
 using RealManager.Services.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RealManager.Services
@@ -10,8 +11,11 @@ namespace RealManager.Services
     public class MatchService : IMatchService
     {
         private readonly ITeamRepository _teamRepository;
-        public MatchService(ITeamRepository teamRepository){
+        private readonly IMatchRepository _matchRepository;
+        public MatchService(ITeamRepository teamRepository, IMatchRepository matchRepository)
+        {
             _teamRepository = teamRepository;
+            _matchRepository = matchRepository;
         }
         public bool RunMatchEvent(int time)
         {
@@ -34,7 +38,19 @@ namespace RealManager.Services
                 currentMatch.HomeGoals = singleEvent.HomeGoals;
             }
 
+            _matchRepository.Create(currentMatch);
+
             return currentMatch;
+        }
+
+        public List<Match> GetMatchesByTeamId(Guid teamId)
+        {
+            return _matchRepository.GetMatchesByTeam(teamId);
+        }
+
+        public Match GetMatchById(Guid matchId)
+        {
+            return _matchRepository.GetById(matchId);
         }
 
         private MatchEvent RunEvent(Match match, int minute, Team homeTeam, Team awayTeam)

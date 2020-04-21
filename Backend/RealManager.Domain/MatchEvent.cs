@@ -16,9 +16,11 @@ namespace RealManager.Domain
             {
                 throw new ArgumentNullException(nameof(match));
             }
-            
         }
-        public List<string> Description{get;}
+
+        public MatchEvent() { }
+
+        public List<string> Description{ get; set; }
         public int HomeGoals {get;set;}
         public int AwayGoals {get;set;}
     }

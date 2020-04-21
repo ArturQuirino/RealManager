@@ -21,7 +21,6 @@ namespace RealManager
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -57,6 +56,7 @@ namespace RealManager
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMatchRepository, MatchRepository>();
 
 
             services.AddDbContext<DataContext>(options =>

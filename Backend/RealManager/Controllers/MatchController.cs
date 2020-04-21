@@ -31,5 +31,19 @@ namespace RealManager.Controllers
         {
             return _matchService.RunFriendly(Guid.Parse(teams.FirstOrDefault()), Guid.Parse(teams.LastOrDefault()));
         }
+
+        [HttpGet]
+        [Route("Team/{teamId}")]
+        public List<Match> GetMatchesByTeamId([FromRoute]Guid teamId)
+        {
+            return _matchService.GetMatchesByTeamId(teamId);
+        }
+
+        [HttpGet]
+        [Route("{matchId}")]
+        public Match GetMatchById([FromRoute]Guid matchId)
+        {
+            return _matchService.GetMatchById(matchId);
+        }
     }
 }

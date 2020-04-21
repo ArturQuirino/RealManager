@@ -16,6 +16,8 @@ namespace RealManager.Domain
             AwayGoals = 0;
             Events = new List<MatchEvent>();
         }
+
+        public Match() { }
         
         public Guid Id { get;set; }
         public Guid HomeTeamId { get;set; }
@@ -32,6 +34,6 @@ namespace RealManager.Domain
                 FinalResult = value;
             }
         }
-        public List<MatchEvent> Events { get; }
+        public List<MatchEvent> Events { get; set; }
     }
 }

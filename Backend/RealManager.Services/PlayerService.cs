@@ -29,12 +29,12 @@ namespace RealManager.Services
 
             newPlayer.Name = Constants.POSSIBLENAMES[randomNameIndex] + ' ' + Constants.POSSIBLESURNAMES[randomSurnameIndex];
 
-            newPlayer.Pace = random.Next(0, 100);
-            newPlayer.Pass = random.Next(0, 100);
-            newPlayer.Physical = random.Next(0, 100);
-            newPlayer.Defence = random.Next(0, 100);
-            newPlayer.Shoot = random.Next(0, 100);
-            newPlayer.Drible = random.Next(0, 100);
+            newPlayer.Pace = random.Next(1, 100);
+            newPlayer.Pass = random.Next(1, 100);
+            newPlayer.Physical = random.Next(1, 100);
+            newPlayer.Defence = random.Next(1, 100);
+            newPlayer.Shoot = random.Next(1, 100);
+            newPlayer.Drible = random.Next(1, 100);
             newPlayer.Overall = Convert.ToInt32(Queryable.Average((new int[] {
                 newPlayer.Pace,
                 newPlayer.Pass,

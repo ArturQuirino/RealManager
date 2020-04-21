@@ -20,6 +20,9 @@ namespace RealManager.Repositories
         public DbSet<UserDb> Users { get; set; }
         public DbSet<TeamDb> Teams { get; set; }
         public DbSet<PlayerDb> Players { get; set; }
+        public DbSet<MatchDb> Matches { get; set; }
+        public DbSet<MatchEventDb> MatchEvents { get; set; }
+        public DbSet<MatchEventDescriptionDb> MatchEventDescriptions { get; set; }
 
     }
 }
