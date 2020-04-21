@@ -43,13 +43,21 @@ const LEAGUE_TABLE_DATA: TeamLeague[] = [
   styleUrls: ['./league.component.scss']
 })
 export class LeagueComponent implements OnInit {
+  division: number;
 
   displayedColumns: string[] = ['position', 'teamName', 'matches', 'won', 'drawn',
   'lost', 'goalsFor', 'goalsAgainst', 'goalDiference', 'points'];
-  leagueDataSource = LEAGUE_TABLE_DATA;
+
+  leagueDataSource: TeamLeague[];
   constructor() { }
 
   ngOnInit(): void {
+    this.getDivisionInformation(1);
+  }
+
+  getDivisionInformation(teamId: number): void {
+    this.division = 1;
+    this.leagueDataSource = LEAGUE_TABLE_DATA;
   }
 
 }
