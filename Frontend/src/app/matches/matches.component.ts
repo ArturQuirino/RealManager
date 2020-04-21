@@ -1,22 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatchApiService, MatchApi } from '../shared/services/match-api.service';
 
-export interface Matches {
+export interface Match {
   homeTeam: string;
   finalResult: string;
   awayTeam: string;
+  homeGoals: number;
+  awayGoals: number;
   id: string;
 }
-
-const matches: Matches[] = [
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'},
-  {homeTeam: 'IGTI', awayTeam: 'PUC', finalResult: '2 x 0', id: '1'}
-];
 
 @Component({
   selector: 'app-matches',
@@ -24,17 +16,29 @@ const matches: Matches[] = [
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
+  teamId = '8FBEC11C-FED1-42B0-96B8-1000D0D33BB2';
+  displayedColumns: string[] = ['matchSum'];
+  matchesDataSource: Match[];
 
-  displayedColumns: string[] = ['homeTeam'];
-  matchesDataSource = matches;
-
-  constructor() { }
+  constructor(private matchApiService: MatchApiService) { }
 
   ngOnInit(): void {
-  }
+    this.matchApiService.getMatchesByTeamId(this.teamId).subscribe((matchesApi: MatchApi[]) => {
+      const matches: Match[] = [];
+      matchesApi.forEach((matchApi) => {
+        matches.push({
+          awayTeam: matchApi.awayTeamName,
+          homeTeam: matchApi.homeTeamName,
+          finalResult: matchApi.finalResult,
+          id: matchApi.id,
+          awayGoals: matchApi.awayGoals,
+          homeGoals: matchApi.homeGoals
+        });
+      });
 
-  navigateMatchDetails(row): void {
-    console.log(row);
+      this.matchesDataSource = matches;
+
+    });
   }
 
 }

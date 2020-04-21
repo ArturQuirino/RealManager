@@ -2,7 +2,7 @@
     <h1 class="title">Matches</h1>
     <table mat-table class ="matches-table" [dataSource]="matchesDataSource">
     
-        <ng-container matColumnDef="homeTeam">
+        <ng-container matColumnDef="matchSum">
             <th mat-header-cell *matHeaderCellDef>
                 <div class="resumo-partida">
                     <span>Home Team</span>
@@ -14,7 +14,7 @@
                 <button mat-button class="match-button">
                     <div class="resumo-partida">
                         <span>{{element.homeTeam}}</span>
-                        <span>{{element.finalResult}}</span>
+                        <span>{{element.homeGoals}} : {{element.awayGoals}}</span>
                         <span>{{element.awayTeam}}</span>
                     </div>
                 </button>
