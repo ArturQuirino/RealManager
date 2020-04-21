@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MatchApiService, MatchApi } from 'src/app/shared/services/match-api.service';
 
 export interface MatchEvents {
-  description: string;
+  descriptions: string[];
 }
 
 @Component({
@@ -11,17 +13,25 @@ export interface MatchEvents {
 })
 export class MatchComponent implements OnInit {
 
-  matchEvents: MatchEvents[] = [
-    {description: 'Goal Goal Goal'},
-    {description: 'He is going to shoot'},
-    {description: 'He pass the defender'},
-    {description: 'He is going with ball'},
-    {description: 'He is going with ball'},
-  ];
+  matchId: string;
+  matchEvents: MatchEvents[];
+  finalResult: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private matchApiService: MatchApiService) { }
 
   ngOnInit(): void {
+    this.matchId = this.route.snapshot.paramMap.get('id');
+    this.matchApiService.getMatchById(this.matchId).subscribe((matchApi: MatchApi) => {
+      this.finalResult = matchApi.finalResult;
+      const matchEvents: MatchEvents[] = [];
+      matchApi.events.forEach((eventApi) => {
+        matchEvents.push({
+          descriptions: eventApi.description
+        });
+      });
+      this.matchEvents = matchEvents;
+    });
+
   }
 
 

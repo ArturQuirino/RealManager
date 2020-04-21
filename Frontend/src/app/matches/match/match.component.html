@@ -2,9 +2,11 @@
     <mat-icon svgIcon="arrow-back" aria-hidden="false" aria-label="Navigate back"></mat-icon>
 </a>
 <section class="section-container">
-    <h1>IGTI 2 x 0 PUC</h1>
-    <div *ngFor="let matchEvent of matchEvents" class="match-event">
-        <p>{{matchEvent.description}}</p>
+    <h1>{{finalResult}}</h1>
+    <div *ngFor="let matchEvent of matchEvents"  class="match-event">
+        <div *ngFor="let description of matchEvent.descriptions">
+            <p>{{description}}</p>
+        </div>
     </div>
 </section>
 
