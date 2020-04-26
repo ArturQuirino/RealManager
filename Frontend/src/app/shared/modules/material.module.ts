@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     FormsModule,
     MatIconModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [],
@@ -31,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     FormsModule,
     MatIconModule,
+    MatSnackBarModule,
   ]
 })
 export class MaterialModule { }

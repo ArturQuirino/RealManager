@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamApiService, TeamApi, PlayerApi } from '../shared/services/team-api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Player {
   starter: boolean;
@@ -31,7 +32,7 @@ export class SquadComponent implements OnInit {
   squadDataSource: Player[] = [];
   displayedColumns = ['starter', 'position', 'name', 'overall', 'pace', 'shoot', 'pass', 'drible', 'defence', 'physical'];
 
-  constructor(private teamApiService: TeamApiService) { }
+  constructor(private teamApiService: TeamApiService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.teamApiService.getTeam(this.teamId).subscribe((team: TeamApi) => {
@@ -58,6 +59,22 @@ export class SquadComponent implements OnInit {
 
   getPlayerPosition(positionId: number): string {
     return Position[positionId];
+  }
+
+  saveStarterTeam() {
+    if (this.squadDataSource.filter((player) => player.position === Position.GK && player.starter).length !== 1) {
+      this.snackBar.open('Chose one Goalkeeper.', undefined, {verticalPosition: 'top', duration: 4000});
+    } else if (this.squadDataSource.filter((player) => player.starter).length !== 11) {
+      this.snackBar.open('Chose only 11 players to start the match.', undefined, {verticalPosition: 'top', duration: 4000});
+    } else if (this.squadDataSource.filter((player) => player.position === Position.DF && player.starter).length === 0) {
+      this.snackBar.open('Chose at least one defender.', undefined, {verticalPosition: 'top', duration: 4000});
+    } else if (this.squadDataSource.filter((player) => player.position === Position.MF && player.starter).length === 0) {
+      this.snackBar.open('Chose at least one midfielder.', undefined, {verticalPosition: 'top', duration: 4000});
+    } else if (this.squadDataSource.filter((player) => player.position === Position.ATA && player.starter).length === 0) {
+      this.snackBar.open('Chose at least one attacker.', undefined, {verticalPosition: 'top', duration: 4000});
+    } else {
+      this.snackBar.open('Squad successfully saved.', undefined, {verticalPosition: 'top', duration: 4000});
+    }
   }
 
 }
