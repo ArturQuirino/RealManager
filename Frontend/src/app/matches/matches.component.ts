@@ -16,7 +16,7 @@ export interface Match {
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  teamId = '8FBEC11C-FED1-42B0-96B8-1000D0D33BB2';
+  teamId = '44B89D7F-3212-42E2-9CE7-1FEDD666C63F';
   displayedColumns: string[] = ['matchSum'];
   matchesDataSource: Match[];
 
