@@ -31,13 +31,14 @@ namespace RealManager.Repositories
                     MatchId = match.Id
                 });
 
-                foreach(var description in matchEvent.Description)
+                foreach(var eventDescription in matchEvent.Description)
                 {
                     matchEventDescriptionsDb.Add(new MatchEventDescriptionDb()
                     {
-                        Description = description,
+                        Description = eventDescription.Description,
                         Id = Guid.NewGuid(),
-                        MatchEventId = matchEventId
+                        MatchEventId = matchEventId,
+                        Position = eventDescription.Position
                     });
                 }
             }
@@ -120,14 +121,17 @@ namespace RealManager.Repositories
                     {
                         AwayGoals = matchEventDb.AwayGoals,
                         HomeGoals = matchEventDb.HomeGoals,
-                        Description = new List<string>()
+                        Description = new List<MatchEventDescription>()
                     };
 
                     var matchesEventDescriptions = matchEventsDescriptionDb.Where(med => med.MatchEventId == matchEventDb.Id).ToList();
 
                     foreach (var matchEventDesc in matchesEventDescriptions)
                     {
-                        matchEvent.Description.Add(matchEventDesc.Description);
+                        matchEvent.Description.Add(new MatchEventDescription() {
+                            Description = matchEventDesc.Description,
+                            Position = matchEventDesc.Position
+                        });
                     }
 
                     match.Events.Add(matchEvent);

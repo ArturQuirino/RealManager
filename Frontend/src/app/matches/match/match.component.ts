@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatchApiService, MatchApi } from 'src/app/shared/services/match-api.service';
+import { MatchApiService, MatchApi, MatchEventApi } from 'src/app/shared/services/match-api.service';
 
 export interface MatchEvents {
   descriptions: string[];
@@ -24,9 +24,10 @@ export class MatchComponent implements OnInit {
     this.matchApiService.getMatchById(this.matchId).subscribe((matchApi: MatchApi) => {
       this.finalResult = matchApi.finalResult;
       const matchEvents: MatchEvents[] = [];
-      matchApi.events.forEach((eventApi) => {
+      matchApi.events.forEach((eventApi: MatchEventApi) => {
+        eventApi.description.sort((a, b) => a.position - b.position);
         matchEvents.push({
-          descriptions: eventApi.description
+          descriptions: eventApi.description.map(desc => desc.description)
         });
       });
       this.matchEvents = matchEvents;

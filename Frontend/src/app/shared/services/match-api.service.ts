@@ -5,7 +5,12 @@ import { Observable } from 'rxjs';
 export interface MatchEventApi {
   homeGoals: number;
   awayGoals: number;
-  description: string[];
+  description: MatchEventDescriptionApi[];
+}
+
+export interface MatchEventDescriptionApi {
+  description: string;
+  position: number;
 }
 
 export interface MatchApi {

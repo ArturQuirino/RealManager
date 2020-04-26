@@ -10,7 +10,7 @@ namespace RealManager.Domain
             {
                 HomeGoals = match.HomeGoals;
                 AwayGoals = match.AwayGoals;
-                Description = new List<string>();
+                Description = new List<MatchEventDescription>();
             }
             else
             {
@@ -20,7 +20,7 @@ namespace RealManager.Domain
 
         public MatchEvent() { }
 
-        public List<string> Description{ get; set; }
+        public List<MatchEventDescription> Description{ get; set; }
         public int HomeGoals {get;set;}
         public int AwayGoals {get;set;}
     }

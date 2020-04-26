@@ -8,5 +8,6 @@ namespace RealManager.Repositories.Models
         public Guid Id { get; set; }
         public string Description { get; set; }
         public Guid MatchEventId { get; set; }
+        public int Position { get; set; }
     }
 }

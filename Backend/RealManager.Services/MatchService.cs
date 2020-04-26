@@ -74,8 +74,13 @@ namespace RealManager.Services
                 defencePlayer = SelectDefencePlayer(homeTeam);
                 goalKeeperPlayer = SelectGoalkeeper(homeTeam);
             }
+            var positionDescriptionEvent = 0;
+            singleEvent.Description.Add(new MatchEventDescription() {
+                Description = attackPlayer.Name + " is trying to drible the defender.",
+                Position = positionDescriptionEvent
+            });
 
-            singleEvent.Description.Add(attackPlayer.Name + " is trying to drible the defender.");
+            positionDescriptionEvent++;
 
             int dribleSuccessChance = attackPlayer.Drible + attackPlayer.Pace / 2 - 15 * minute / attackPlayer.Physical;
             
@@ -84,11 +89,21 @@ namespace RealManager.Services
             var ableToDrible = realDrible > 150 - dribleSuccessChance;
 
             if (!ableToDrible) {
-                singleEvent.Description.Add(attackPlayer.Name + " lost the ball.");
+                singleEvent.Description.Add(new MatchEventDescription()
+                {
+                    Description = attackPlayer.Name + " lost the ball.",
+                    Position = positionDescriptionEvent
+                });
                 return singleEvent;
             }
 
-            singleEvent.Description.Add(defencePlayer.Name + " is trying tackle the foward player.");
+            singleEvent.Description.Add(new MatchEventDescription()
+            {
+                Description = defencePlayer.Name + " is trying tackle the foward player.",
+                Position = positionDescriptionEvent
+            });
+
+            positionDescriptionEvent++;
 
             int tackleSucessChance = defencePlayer.Defence + defencePlayer.Pace / 2 - 15 * minute / defencePlayer.Physical;
 
@@ -97,11 +112,21 @@ namespace RealManager.Services
             var ableToTackle = realTackle > 150 - tackleSucessChance;
 
             if (ableToTackle){
-                singleEvent.Description.Add(defencePlayer.Name + " made the tackle.");
+                singleEvent.Description.Add(new MatchEventDescription()
+                {
+                    Description = defencePlayer.Name + " made the tackle.",
+                    Position = positionDescriptionEvent
+                });
                 return singleEvent;
             }
 
-            singleEvent.Description.Add(attackPlayer.Name + " will shoot.");
+            singleEvent.Description.Add(new MatchEventDescription()
+            {
+                Description = attackPlayer.Name + " will shoot.",
+                Position = positionDescriptionEvent
+            });
+
+            positionDescriptionEvent++;
 
             int shootOnTargetChance = attackPlayer.Shoot - 15 * minute / attackPlayer.Physical;
 
@@ -110,11 +135,21 @@ namespace RealManager.Services
             var ableToShootOnTarget = realShoot > 100 - shootOnTargetChance;
 
             if (!ableToShootOnTarget){
-                singleEvent.Description.Add(attackPlayer.Name + " shoot far away from the goal.");
+                singleEvent.Description.Add(new MatchEventDescription()
+                {
+                    Description = attackPlayer.Name + " shoot far away from the goal.",
+                    Position = positionDescriptionEvent
+                });
                 return singleEvent;
             }
 
-            singleEvent.Description.Add(goalKeeperPlayer.Name + " jumped!");
+            singleEvent.Description.Add(new MatchEventDescription()
+            {
+                Description = goalKeeperPlayer.Name + " jumped!",
+                Position = positionDescriptionEvent
+            });
+
+            positionDescriptionEvent++;
 
             int defenceSucessChance = goalKeeperPlayer.Defence + goalKeeperPlayer.Pace / 2 - 5 * minute / goalKeeperPlayer.Physical;
 
@@ -123,12 +158,20 @@ namespace RealManager.Services
             var ableToDefence = realDefence > 150 - defenceSucessChance;
 
             if (ableToDefence){
-                singleEvent.Description.Add(goalKeeperPlayer.Name + " catched the ball!");
+                singleEvent.Description.Add(new MatchEventDescription()
+                {
+                    Description = goalKeeperPlayer.Name + " catched the ball!",
+                    Position = positionDescriptionEvent
+                });
                 return singleEvent;
             }
 
+            singleEvent.Description.Add(new MatchEventDescription()
+            {
+                Description = attackPlayer.Name + " Scored a GOAL!!!.",
+                Position = positionDescriptionEvent
+            });
 
-            singleEvent.Description.Add(attackPlayer.Name + " Scored a GOAL!!!.");
             if(homeTeamAttack){
                 singleEvent.HomeGoals++;
             }else{
