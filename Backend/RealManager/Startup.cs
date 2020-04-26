@@ -57,6 +57,7 @@ namespace RealManager
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<ILeagueRepository, LeagueRepository>();
 
             services.AddControllers().AddNewtonsoftJson();
 

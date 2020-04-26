@@ -19,7 +19,8 @@ namespace RealManager.Services
 
         public Team CreateTeam(Team team)
         {
-            return _teamRepository.Create(team);
+            var createdTeam = _teamRepository.Create(team);
+            return createdTeam;
         }
 
         public Team UpdateTeam(Team team)

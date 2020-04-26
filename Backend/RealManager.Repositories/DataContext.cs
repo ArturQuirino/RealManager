@@ -23,6 +23,7 @@ namespace RealManager.Repositories
         public DbSet<MatchDb> Matches { get; set; }
         public DbSet<MatchEventDb> MatchEvents { get; set; }
         public DbSet<MatchEventDescriptionDb> MatchEventDescriptions { get; set; }
+        public DbSet<LeagueDb> Leagues { get; set; }
 
     }
 }

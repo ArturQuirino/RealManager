@@ -8,11 +8,13 @@ namespace RealManager.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly ILeagueRepository _leagueRepository;
         private readonly ITeamService _teamService;
-        public UserService(IUserRepository userRepository, ITeamService teamService)
+        public UserService(IUserRepository userRepository, ITeamService teamService, ILeagueRepository leagueRepository)
         {
             _userRepository = userRepository;
             _teamService = teamService;
+            _leagueRepository = leagueRepository;
         }
 
         public User CreateUser(string email, string password, string teamName){
@@ -27,6 +29,8 @@ namespace RealManager.Services
             user.TeamId = usersTeam.Id;
 
             var addedUser = _userRepository.Create(user);
+
+            _leagueRepository.AddTeamToLeague(usersTeam);
 
             return addedUser;
         }
