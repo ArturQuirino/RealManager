@@ -40,6 +40,27 @@ namespace RealManager.Repositories
             return team;
         }
 
+        public Team Update(Team team)
+        {
+            var teamDb = _dataContext.Teams.Single(teamDb => teamDb.Id == team.Id);
+            teamDb.Starter1Id = team.Starters[0].Id;
+            teamDb.Starter2Id = team.Starters[1].Id;
+            teamDb.Starter3Id = team.Starters[2].Id;
+            teamDb.Starter4Id = team.Starters[3].Id;
+            teamDb.Starter5Id = team.Starters[4].Id;
+            teamDb.Starter6Id = team.Starters[5].Id;
+            teamDb.Starter7Id = team.Starters[6].Id;
+            teamDb.Starter8Id = team.Starters[7].Id;
+            teamDb.Starter9Id = team.Starters[8].Id;
+            teamDb.Starter10Id = team.Starters[9].Id;
+            teamDb.Starter11Id = team.Starters[10].Id;
+
+            _dataContext.Teams.Update(teamDb);
+            _dataContext.SaveChanges();
+
+            return team;
+        }
+
 
         public Team GetTeam(Guid teamId)
         {

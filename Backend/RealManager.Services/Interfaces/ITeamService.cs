@@ -8,5 +8,6 @@ namespace RealManager.Services.Interfaces
         Team CreateTeam(Team team);
         Team GetTeam(Guid teamId);
         Team CreateRandomTeam(string teamName);
+        Team UpdateTeam(Team team);
     }
 }

@@ -28,5 +28,12 @@ namespace RealManager.Controllers
         {
             return _teamService.GetTeam(teamId);
         }
+
+        [HttpPut]
+        [Route("")]
+        public Team Put([FromBody]Team team)
+        {
+            return _teamService.UpdateTeam(team);
+        }
     }
 }

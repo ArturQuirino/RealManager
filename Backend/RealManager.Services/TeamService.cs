@@ -17,8 +17,14 @@ namespace RealManager.Services
             _plyerService = plyerService;
         }
 
-        public Team CreateTeam(Team team){
+        public Team CreateTeam(Team team)
+        {
             return _teamRepository.Create(team);
+        }
+
+        public Team UpdateTeam(Team team)
+        {
+
         }
 
         public Team GetTeam(Guid teamId)

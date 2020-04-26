@@ -7,5 +7,6 @@ namespace RealManager.Repositories.Interfaces
     {
         Team Create(Team team);
         Team GetTeam(Guid teamId);
+        Team Update(Team team);
     }
 }
