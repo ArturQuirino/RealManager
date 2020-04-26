@@ -58,6 +58,8 @@ namespace RealManager
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
 
+            services.AddControllers().AddNewtonsoftJson();
+
 
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));

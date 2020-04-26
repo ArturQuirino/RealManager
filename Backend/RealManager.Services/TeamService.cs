@@ -24,7 +24,7 @@ namespace RealManager.Services
 
         public Team UpdateTeam(Team team)
         {
-
+            return _teamRepository.Update(team);
         }
 
         public Team GetTeam(Guid teamId)

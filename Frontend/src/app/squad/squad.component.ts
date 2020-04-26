@@ -2,17 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TeamApiService, TeamApi, PlayerApi } from '../shared/services/team-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-interface Player {
+interface Player extends PlayerApi {
   starter: boolean;
-  position: Position;
-  name: string;
-  overall: number;
-  pace: number;
-  shoot: number;
-  pass: number;
-  drible: number;
-  defence: number;
-  physical: number;
 }
 
 enum Position {
@@ -49,7 +40,9 @@ export class SquadComponent implements OnInit {
           physical: player.physical,
           position: player.position,
           shoot: player.shoot,
-          starter: team.starters.some(p => p.id === player.id)
+          starter: team.starters.some(p => p.id === player.id),
+          id: player.id,
+          teamId: player.teamId,
         });
       });
       teamPlayers.sort((a, b) => a.position - b.position);
@@ -63,17 +56,62 @@ export class SquadComponent implements OnInit {
 
   saveStarterTeam() {
     if (this.squadDataSource.filter((player) => player.position === Position.GK && player.starter).length !== 1) {
-      this.snackBar.open('Chose one Goalkeeper.', undefined, {verticalPosition: 'top', duration: 4000});
+      this.snackBar.open('Chose one Goalkeeper.', undefined, { verticalPosition: 'top', duration: 4000 });
     } else if (this.squadDataSource.filter((player) => player.starter).length !== 11) {
-      this.snackBar.open('Chose only 11 players to start the match.', undefined, {verticalPosition: 'top', duration: 4000});
+      this.snackBar.open('Chose only 11 players to start the match.', undefined, { verticalPosition: 'top', duration: 4000 });
     } else if (this.squadDataSource.filter((player) => player.position === Position.DF && player.starter).length === 0) {
-      this.snackBar.open('Chose at least one defender.', undefined, {verticalPosition: 'top', duration: 4000});
+      this.snackBar.open('Chose at least one defender.', undefined, { verticalPosition: 'top', duration: 4000 });
     } else if (this.squadDataSource.filter((player) => player.position === Position.MF && player.starter).length === 0) {
-      this.snackBar.open('Chose at least one midfielder.', undefined, {verticalPosition: 'top', duration: 4000});
+      this.snackBar.open('Chose at least one midfielder.', undefined, { verticalPosition: 'top', duration: 4000 });
     } else if (this.squadDataSource.filter((player) => player.position === Position.ATA && player.starter).length === 0) {
-      this.snackBar.open('Chose at least one attacker.', undefined, {verticalPosition: 'top', duration: 4000});
+      this.snackBar.open('Chose at least one attacker.', undefined, { verticalPosition: 'top', duration: 4000 });
     } else {
-      this.snackBar.open('Squad successfully saved.', undefined, {verticalPosition: 'top', duration: 4000});
+      const playersApi = this.squadDataSource.map((player: Player): PlayerApi => {
+        return {
+          defence: player.defence,
+          name: player.name,
+          pass: player.pass,
+          drible: player.drible,
+          id: player.id,
+          overall: player.overall,
+          pace: player.pace,
+          physical: player.physical,
+          position: player.position,
+          shoot: player.shoot,
+          teamId: player.teamId,
+        };
+      });
+
+      const startersApi = this.squadDataSource
+        .filter((player) => player.starter)
+        .map((player: Player): PlayerApi => {
+          return {
+            defence: player.defence,
+            name: player.name,
+            pass: player.pass,
+            drible: player.drible,
+            id: player.id,
+            overall: player.overall,
+            pace: player.pace,
+            physical: player.physical,
+            position: player.position,
+            shoot: player.shoot,
+            teamId: player.teamId,
+          };
+        });
+
+      const teamApi: TeamApi = {
+        id: this.teamId,
+        name: this.teamName,
+        players: playersApi,
+        starters: startersApi
+      };
+
+      this.teamApiService.updateTeam(teamApi).subscribe(() => {
+        this.snackBar.open('Squad successfully saved.', undefined, { verticalPosition: 'top', duration: 4000 });
+      }, () => {
+        this.snackBar.open('An error occurred', undefined, { verticalPosition: 'top', duration: 4000 });
+      });
     }
   }
 

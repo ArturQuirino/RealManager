@@ -33,4 +33,8 @@ export class TeamApiService {
   getTeam(teamId: string): Observable<TeamApi> {
     return this.http.get<TeamApi>('https://localhost:44349/api/Team/' + teamId);
   }
+
+  updateTeam(teamApi: TeamApi): Observable<TeamApi> {
+    return this.http.put<TeamApi>('https://localhost:44349/api/Team', teamApi);
+  }
 }
