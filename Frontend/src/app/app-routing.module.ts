@@ -7,6 +7,7 @@ import { MainHeaderComponent } from './shared/components/main-header/main-header
 import { MatchesComponent } from './matches/matches.component';
 import { SquadComponent } from './squad/squad.component';
 import { MatchComponent } from './matches/match/match.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainHeaderComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -41,6 +43,7 @@ const routes: Routes = [
   },
   {
     path: '',
+    canActivate: [AuthGuard],
     redirectTo: '/main',
     pathMatch: 'full'
   }

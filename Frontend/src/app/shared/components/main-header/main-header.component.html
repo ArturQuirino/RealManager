@@ -4,7 +4,7 @@
         <button mat-raised-button color="primary" routerLink="./league"  routerLinkActive="active">League</button>
         <button mat-raised-button color="primary" routerLink="./squad"  routerLinkActive="active">Squad</button>
         <button mat-raised-button color="primary" routerLink="./matches"  routerLinkActive="active">Matches</button>
-        <button mat-raised-button color="primary" routerLink="/login"  routerLinkActive="active">Sign out</button>
+        <button mat-raised-button color="primary" (click)="logout()">Sign out</button>
     </div>
 </section>
 <router-outlet></router-outlet>

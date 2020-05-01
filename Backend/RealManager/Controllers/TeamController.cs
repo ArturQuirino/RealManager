@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealManager.Domain;
 using RealManager.Services.Interfaces;
@@ -5,6 +6,7 @@ using System;
 
 namespace RealManager.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TeamController : ControllerBase

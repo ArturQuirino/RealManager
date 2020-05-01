@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealManager.Controllers.Requests;
@@ -10,6 +11,7 @@ using RealManager.Services.Interfaces;
 
 namespace RealManager.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -20,6 +22,7 @@ namespace RealManager.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("")]
         public User CreateUser([FromBody]CreateUserRequest createUserRequest)
@@ -31,6 +34,7 @@ namespace RealManager.Controllers
             return _userService.CreateUser(createUserRequest.Email, createUserRequest.Password, createUserRequest.TeamName);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("/Login")]
         public User Login([FromBody]LoginUserRequest loginUserRequest)

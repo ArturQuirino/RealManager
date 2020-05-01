@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { MainHeaderComponent } from './shared/components/main-header/main-header
 import { MatchesComponent } from './matches/matches.component';
 import { SquadComponent } from './squad/squad.component';
 import { MatchComponent } from './matches/match/match.component';
+import { JwtInterceptor } from './shared/guards/jwt.interceptor';
+import { ErrorInterceptor } from './shared/guards/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { MatchComponent } from './matches/match/match.component';
     MaterialModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

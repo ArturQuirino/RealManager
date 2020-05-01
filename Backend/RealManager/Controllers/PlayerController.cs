@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealManager.Domain;
 using RealManager.Services.Interfaces;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealManager.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PlayerController : ControllerBase

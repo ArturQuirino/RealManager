@@ -3,6 +3,15 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginApiService } from '../shared/services/login-api.service';
 
+export class User {
+  id: number;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  token?: string;
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +33,9 @@ export class LoginComponent implements OnInit {
 
   signin(loginData: any) {
     this.loginApiService.login(loginData.email, loginData.password).subscribe(
-      () => this.router.navigate(['/main']),
+      (user: User) => {
+        this.router.navigate(['/main']);
+      },
       () => this.usarioSenhaInvalido = true
     );
   }

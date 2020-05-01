@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace RealManager.Domain
 {
@@ -10,7 +11,9 @@ namespace RealManager.Domain
         }
         public Guid Id { get; set; }
         public string Email { get; set; }
+        [JsonIgnore]
         public string Password { get; set; }
         public Guid TeamId { get; set; }
+        public string Token { get; set; }
     }
 }
