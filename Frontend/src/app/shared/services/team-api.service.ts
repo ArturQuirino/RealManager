@@ -30,8 +30,8 @@ export class TeamApiService {
 
   constructor(private http: HttpClient) { }
 
-  getTeam(teamId: string): Observable<TeamApi> {
-    return this.http.get<TeamApi>('https://localhost:44349/api/Team/' + teamId);
+  getTeam(): Observable<TeamApi> {
+    return this.http.get<TeamApi>('https://localhost:44349/api/Team/');
   }
 
   updateTeam(teamApi: TeamApi): Observable<TeamApi> {

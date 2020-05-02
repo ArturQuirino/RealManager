@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RealManager.Domain;
 using RealManager.Services.Interfaces;
 using System;
+using System.Linq;
 
 namespace RealManager.Controllers
 {
@@ -25,10 +26,11 @@ namespace RealManager.Controllers
         }
 
         [HttpGet]
-        [Route("{teamId}")]
-        public Team Get([FromRoute]Guid teamId)
+        [Route("")]
+        public Team Get()
         {
-            return _teamService.GetTeam(teamId);
+            var teamId = User.Claims.Where(c => c.Type == "TeamId").FirstOrDefault().Value;
+            return _teamService.GetTeam(new Guid(teamId));
         }
 
         [HttpPut]

@@ -26,7 +26,7 @@ export class SquadComponent implements OnInit {
   constructor(private teamApiService: TeamApiService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.teamApiService.getTeam(this.teamId).subscribe((team: TeamApi) => {
+    this.teamApiService.getTeam().subscribe((team: TeamApi) => {
       this.teamName = team.name;
       const teamPlayers: Player[] = [];
       team.players.forEach((player: PlayerApi) => {
