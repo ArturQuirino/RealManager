@@ -27,6 +27,7 @@ namespace RealManager.Controllers
             return _matchService.RunMatchEvent(time);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("/Friendly")]
         public Match RunFriendly([FromBody]List<string> teams)

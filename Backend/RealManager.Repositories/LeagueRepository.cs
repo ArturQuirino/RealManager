@@ -59,6 +59,30 @@ namespace RealManager.Repositories
             return leagues;
         }
 
+        public List<League> UpdateLeague(List<League> leagues)
+        {
+            var leaguesDb = _dataContext.Leagues.Where(teamLeagueDb => teamLeagueDb.IdLeague == leagues.First().IdLeague);
+            foreach(var leagueDb in leaguesDb)
+            {
+                var league = leagues.First(l => l.TeamId == leagueDb.TeamId);
+                leagueDb.Matches = league.Matches;
+                leagueDb.Points = league.Points;
+                leagueDb.Position = league.Position;
+                leagueDb.GoalDifference = league.GoalDifference;
+                leagueDb.GoalsAgainst = league.GoalsAgainst;
+                leagueDb.GoalsFor = league.GoalsFor;
+                leagueDb.Won = league.Won;
+                leagueDb.Drawn = league.Drawn;
+                leagueDb.Lost = league.Lost;
+            }
+
+            _dataContext.Leagues.UpdateRange(leaguesDb);
+            _dataContext.SaveChanges();
+
+            return leagues;
+
+        }
+
         private League MapLeagueDbToLeague(LeagueDb leagueDb)
         {
             return new League()

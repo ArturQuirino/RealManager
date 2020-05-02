@@ -12,10 +12,12 @@ namespace RealManager.Services
     {
         private readonly ITeamRepository _teamRepository;
         private readonly IMatchRepository _matchRepository;
-        public MatchService(ITeamRepository teamRepository, IMatchRepository matchRepository)
+        private readonly ILeagueRepository _leagueRepository;
+        public MatchService(ITeamRepository teamRepository, IMatchRepository matchRepository, ILeagueRepository leagueRepository)
         {
             _teamRepository = teamRepository;
             _matchRepository = matchRepository;
+            _leagueRepository = leagueRepository;
         }
         public bool RunMatchEvent(int time)
         {
@@ -39,6 +41,7 @@ namespace RealManager.Services
             }
 
             _matchRepository.Create(currentMatch);
+            SaveMatchInLeague(currentMatch);
 
             return currentMatch;
         }
@@ -51,6 +54,58 @@ namespace RealManager.Services
         public Match GetMatchById(Guid matchId)
         {
             return _matchRepository.GetById(matchId);
+        }
+
+        private void SaveMatchInLeague(Match match)
+        {
+            var idLeagueHomeTeam = _leagueRepository.GetLeagueFromTeamId(match.HomeTeamId).IdLeague;
+            var completeDivision = _leagueRepository.GetLeagueFromIdLeague(idLeagueHomeTeam);
+
+            var leagueHomeTeam = completeDivision.First(league => league.TeamId == match.HomeTeamId);
+            var leagueAwayTeam = completeDivision.First(league => league.TeamId == match.AwayTeamId);
+
+            leagueHomeTeam.GoalsFor += match.HomeGoals;
+            leagueAwayTeam.GoalsFor += match.AwayGoals;
+
+            leagueHomeTeam.GoalsAgainst += match.AwayGoals;
+            leagueAwayTeam.GoalsAgainst += match.HomeGoals;
+
+            leagueHomeTeam.GoalDifference = leagueHomeTeam.GoalsFor - leagueHomeTeam.GoalsAgainst;
+            leagueAwayTeam.GoalDifference = leagueAwayTeam.GoalsFor - leagueAwayTeam.GoalsAgainst;
+
+            leagueHomeTeam.Matches++;
+            leagueAwayTeam.Matches++;
+
+            if(match.HomeGoals > match.AwayGoals)
+            {
+                leagueHomeTeam.Won++;
+                leagueHomeTeam.Points += 3;
+
+                leagueAwayTeam.Lost++;
+            }
+            else if (match.HomeGoals < match.AwayGoals)
+            {
+                leagueAwayTeam.Won++;
+                leagueAwayTeam.Points += 3;
+
+                leagueHomeTeam.Lost++;
+            }
+            else
+            {
+                leagueHomeTeam.Drawn++;
+                leagueAwayTeam.Drawn++;
+
+                leagueHomeTeam.Points++;
+                leagueAwayTeam.Points++;
+            }
+
+            completeDivision = completeDivision.OrderByDescending(teamLeague => teamLeague.Points).ToList();
+            for(int position = 1; position <= completeDivision.Count; position++)
+            {
+                completeDivision[position-1].Position = position;
+            }
+
+            _leagueRepository.UpdateLeague(completeDivision);
         }
 
         private MatchEvent RunEvent(Match match, int minute, Team homeTeam, Team awayTeam)

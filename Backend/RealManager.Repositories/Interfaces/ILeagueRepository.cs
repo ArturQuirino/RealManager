@@ -9,5 +9,6 @@ namespace RealManager.Repositories.Interfaces
         League AddTeamToLeague(Team team);
         League GetLeagueFromTeamId(Guid teamId);
         List<League> GetLeagueFromIdLeague(Guid idLeague);
+        List<League> UpdateLeague(List<League> leagues);
     }
 }
