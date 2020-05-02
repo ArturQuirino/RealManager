@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface LeagueTeamApi {
   idLeague: string;
@@ -26,7 +27,7 @@ export class LeagueApiService {
 
   constructor(private http: HttpClient) { }
 
-  getLeagueByTeam(teamId: string): Observable<LeagueTeamApi[]> {
-    return this.http.get<LeagueTeamApi[]>('https://localhost:44349/api/League/Team/' + teamId);
+  getLeagueByTeam(): Observable<LeagueTeamApi[]> {
+    return this.http.get<LeagueTeamApi[]>(`${environment.apiUrl}/api/League/Team`);
   }
 }

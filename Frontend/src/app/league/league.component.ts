@@ -19,12 +19,12 @@ export class LeagueComponent implements OnInit {
   constructor(private leagueApiService: LeagueApiService) { }
 
   ngOnInit(): void {
-    this.getDivisionInformation('44B89D7F-3212-42E2-9CE7-1FEDD666C63F');
+    this.getDivisionInformation();
   }
 
-  getDivisionInformation(teamId: string): void {
+  getDivisionInformation(): void {
     this.division = 1;
-    this.leagueApiService.getLeagueByTeam(teamId).subscribe((leagueTeamsApi: LeagueTeamApi[]) => {
+    this.leagueApiService.getLeagueByTeam().subscribe((leagueTeamsApi: LeagueTeamApi[]) => {
 
       this.leagueDataSource = leagueTeamsApi.sort((a, b) => a.position - b.position);
     });

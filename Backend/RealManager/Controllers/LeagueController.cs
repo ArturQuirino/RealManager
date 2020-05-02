@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealManager.Domain;
@@ -19,10 +20,11 @@ namespace RealManager.Controllers
         }
 
         [HttpGet]
-        [Route("Team/{teamId}")]
-        public List<League> GetLeagueFromTeamId([FromRoute]Guid teamId)
+        [Route("Team")]
+        public List<League> GetLeagueFromTeamId()
         {
-            return _leagueService.GetLeagueFromTeamId(teamId);
+            var teamId = User.Claims.Where(c => c.Type == "TeamId").FirstOrDefault().Value;
+            return _leagueService.GetLeagueFromTeamId(new Guid(teamId));
         }
     }
 }

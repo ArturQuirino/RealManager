@@ -17,7 +17,7 @@ enum Position {
 })
 export class SquadComponent implements OnInit {
 
-  teamId = '8FBEC11C-FED1-42B0-96B8-1000D0D33BB2';
+  teamId: string;
   starter = false;
   teamName: string;
   squadDataSource: Player[] = [];
@@ -28,6 +28,7 @@ export class SquadComponent implements OnInit {
   ngOnInit(): void {
     this.teamApiService.getTeam().subscribe((team: TeamApi) => {
       this.teamName = team.name;
+      this.teamId = team.id;
       const teamPlayers: Player[] = [];
       team.players.forEach((player: PlayerApi) => {
         teamPlayers.push({

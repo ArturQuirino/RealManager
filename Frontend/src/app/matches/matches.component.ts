@@ -16,14 +16,14 @@ export interface Match {
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  teamId = '44B89D7F-3212-42E2-9CE7-1FEDD666C63F';
+  teamId: string;
   displayedColumns: string[] = ['matchSum'];
   matchesDataSource: Match[];
 
   constructor(private matchApiService: MatchApiService) { }
 
   ngOnInit(): void {
-    this.matchApiService.getMatchesByTeamId(this.teamId).subscribe((matchesApi: MatchApi[]) => {
+    this.matchApiService.getMatchesByTeamId().subscribe((matchesApi: MatchApi[]) => {
       const matches: Match[] = [];
       matchesApi.forEach((matchApi) => {
         matches.push({

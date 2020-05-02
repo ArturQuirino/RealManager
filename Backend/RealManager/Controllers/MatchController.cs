@@ -35,10 +35,11 @@ namespace RealManager.Controllers
         }
 
         [HttpGet]
-        [Route("Team/{teamId}")]
-        public List<Match> GetMatchesByTeamId([FromRoute]Guid teamId)
+        [Route("Team")]
+        public List<Match> GetMatchesByTeamId()
         {
-            return _matchService.GetMatchesByTeamId(teamId);
+            var teamId = User.Claims.Where(c => c.Type == "TeamId").FirstOrDefault().Value;
+            return _matchService.GetMatchesByTeamId(new Guid(teamId));
         }
 
         [HttpGet]

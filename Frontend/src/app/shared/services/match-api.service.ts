@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 export interface MatchEventApi {
   homeGoals: number;
   awayGoals: number;
@@ -30,11 +32,11 @@ export class MatchApiService {
 
   constructor(private http: HttpClient) { }
 
-  getMatchesByTeamId(teamId: string): Observable<MatchApi[]> {
-    return this.http.get<MatchApi[]>('https://localhost:44349/api/Match/Team/' + teamId);
+  getMatchesByTeamId(): Observable<MatchApi[]> {
+    return this.http.get<MatchApi[]>(`${environment.apiUrl}/api/Match/Team`);
   }
 
   getMatchById(matchId: string): Observable<MatchApi> {
-    return this.http.get<MatchApi>('https://localhost:44349/api/Match/' + matchId);
+    return this.http.get<MatchApi>(`${environment.apiUrl}/api/Match/` + matchId);
   }
 }
