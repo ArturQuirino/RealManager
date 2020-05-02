@@ -99,7 +99,10 @@ namespace RealManager.Services
                 leagueAwayTeam.Points++;
             }
 
-            completeDivision = completeDivision.OrderByDescending(teamLeague => teamLeague.Points).ToList();
+            completeDivision = completeDivision
+                .OrderByDescending(teamLeague => teamLeague.GoalDifference)
+                .OrderByDescending(teamLeague => teamLeague.Points)
+                .ToList();
             for(int position = 1; position <= completeDivision.Count; position++)
             {
                 completeDivision[position-1].Position = position;
