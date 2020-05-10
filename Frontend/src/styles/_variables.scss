@@ -75,22 +75,3 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 @include angular-material-theme($app-theme);
 
-$primary-color-dark:   #388E3C;
-$primary-color:        #4CAF50;
-$primary-color-light:  #C8E6C9;
-$primary-color-text:   #FFFFFF;
-$accent-color:         #E040FB;
-$primary-text-color:   #212121;
-$secondary-text-color: #757575;
-$divider-color:        #BDBDBD;
-
-
-// $primary-color: #445916;
-// $secondary-color: #D98555;
-
-// $dark-blue: #150526;
-// $dark-green: #172601;
-// $primary-green: #445916;
-// $light-green: #7A8C37;
-// $secondary-orange: #D98555;
-
