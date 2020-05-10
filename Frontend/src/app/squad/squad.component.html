@@ -3,9 +3,9 @@
     <table mat-table [dataSource]="squadDataSource">
     
         <ng-container matColumnDef="starter">
-            <th mat-header-cell *matHeaderCellDef> Starter </th>
+            <th mat-header-cell *matHeaderCellDef id="header-starter"> Starter </th>
             <td mat-cell *matCellDef="let element">
-                <mat-checkbox [(ngModel)]="element.starter"></mat-checkbox>
+                <mat-checkbox [(ngModel)]="element.starter" aria-labelledby="header-starter"></mat-checkbox>
             </td>
         </ng-container>
     

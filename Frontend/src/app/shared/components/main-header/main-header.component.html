@@ -1,10 +1,10 @@
 <section class="container-header">
     <span class="logo-real-manager">Real Manager</span>
-    <div>
+    <nav>
         <button mat-raised-button color="primary" routerLink="./league"  routerLinkActive="active">League</button>
         <button mat-raised-button color="primary" routerLink="./squad"  routerLinkActive="active">Squad</button>
         <button mat-raised-button color="primary" routerLink="./matches"  routerLinkActive="active">Matches</button>
         <button mat-raised-button color="primary" (click)="logout()">Sign out</button>
-    </div>
+    </nav>
 </section>
 <router-outlet></router-outlet>

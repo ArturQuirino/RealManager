@@ -10,7 +10,7 @@
                     <span>Away Team</span>
                 </div>
             </th>
-            <td mat-cell *matCellDef="let element" >
+            <td mat-cell *matCellDef="let element">
                 <button mat-button class="match-button">
                     <div class="resumo-partida">
                         <span>{{element.homeTeam}}</span>
@@ -21,6 +21,6 @@
             </td>
         </ng-container>    
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['./', row.id]"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['./', row.id]"  tabindex="-1"></tr>
     </table>
 </section>

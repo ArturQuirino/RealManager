@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeagueApiService, LeagueTeamApi } from '../shared/services/league-api.service';
 
-export interface TeamLeague extends LeagueTeamApi { }
-
-
 @Component({
   selector: 'app-league',
   templateUrl: './league.component.html',
@@ -15,7 +12,7 @@ export class LeagueComponent implements OnInit {
   displayedColumns: string[] = ['position', 'teamName', 'matches', 'won', 'drawn',
     'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'points'];
 
-  leagueDataSource: TeamLeague[];
+  leagueDataSource: LeagueTeamApi[];
   constructor(private leagueApiService: LeagueApiService) { }
 
   ngOnInit(): void {
@@ -30,5 +27,4 @@ export class LeagueComponent implements OnInit {
         .sort((a, b) => a.position - b.position);
     });
   }
-
 }
