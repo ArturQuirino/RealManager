@@ -1,4 +1,11 @@
-.container-header {
+.container-header{
+    display: none;
+}
+
+.container-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     background-color: #172601;
     display: flex;
     flex-direction: row;
@@ -6,6 +13,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    width: 100%;
 
     .logo-real-manager {
         margin: 0 0 0 20px;
@@ -15,5 +23,31 @@
     button {
         height: 80%;
         margin: 0 10px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .container-footer{
+        display: none;
+    }
+
+    .container-header {
+        background-color: #172601;
+        display: flex;
+        flex-direction: row;
+        height: 8%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+
+        .logo-real-manager {
+            margin: 0 0 0 20px;
+            color: white;
+        }
+
+        button {
+            height: 80%;
+            margin: 0 10px;
+        }
     }
 }

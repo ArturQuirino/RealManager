@@ -1,10 +1,19 @@
 <section class="container-header">
     <span class="logo-real-manager">Real Manager</span>
     <nav>
-        <button mat-raised-button color="primary" routerLink="./league"  routerLinkActive="active">League</button>
-        <button mat-raised-button color="primary" routerLink="./squad"  routerLinkActive="active">Squad</button>
-        <button mat-raised-button color="primary" routerLink="./matches"  routerLinkActive="active">Matches</button>
+        <button mat-raised-button color="primary" routerLink="./league" routerLinkActive="active">League</button>
+        <button mat-raised-button color="primary" routerLink="./squad" routerLinkActive="active">Squad</button>
+        <button mat-raised-button color="primary" routerLink="./matches" routerLinkActive="active">Matches</button>
         <button mat-raised-button color="primary" (click)="logout()">Sign out</button>
     </nav>
 </section>
 <router-outlet></router-outlet>
+<div style="height: 10%;"></div>
+<section class="container-footer">
+    <nav>
+        <button mat-raised-button color="primary" routerLink="./league" routerLinkActive="active">L</button>
+        <button mat-raised-button color="primary" routerLink="./squad" routerLinkActive="active">S</button>
+        <button mat-raised-button color="primary" routerLink="./matches" routerLinkActive="active">M</button>
+        <button mat-raised-button color="primary" (click)="logout()">O</button>
+    </nav>
+</section>
