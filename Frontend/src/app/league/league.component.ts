@@ -9,8 +9,8 @@ import { LeagueApiService, LeagueTeamApi } from '../shared/services/league-api.s
 export class LeagueComponent implements OnInit {
   division: number;
 
-  displayedColumns: string[] = ['position', 'teamName', 'matches', 'won', 'drawn',
-    'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'points'];
+  displayedColumns: string[] = ['position', 'teamName', 'points', 'matches', 'won', 'drawn',
+    'lost', 'goalsFor', 'goalsAgainst', 'goalDifference'];
 
   leagueDataSource: LeagueTeamApi[];
   constructor(private leagueApiService: LeagueApiService) { }
