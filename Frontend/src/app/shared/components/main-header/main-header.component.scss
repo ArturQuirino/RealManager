@@ -6,23 +6,23 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: #172601;
+    background-color: white;
+    border-top: #172601 solid 1px;
     display: flex;
     flex-direction: row;
-    height: 8%;
+    min-height: 60px;
     justify-content: space-between;
-    align-items: center;
-    padding: 5px;
+    align-items: flex-start;
     width: 100%;
-
-    .logo-real-manager {
-        margin: 0 0 0 20px;
-        color: white;
-    }
+    padding: 5px 0 0 0;
 
     button {
-        height: 80%;
-        margin: 0 10px;
+        .footer__button{
+            height: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
 
