@@ -1,10 +1,30 @@
 <section class="container-header">
     <span class="logo-real-manager">Real Manager</span>
     <nav>
-        <button mat-raised-button color="primary" routerLink="./league" routerLinkActive="active">League</button>
-        <button mat-raised-button color="primary" routerLink="./squad" routerLinkActive="active">Squad</button>
-        <button mat-raised-button color="primary" routerLink="./matches" routerLinkActive="active">Matches</button>
-        <button mat-raised-button color="primary" (click)="logout()">Sign out</button>
+        <button mat-button color="primary" routerLink="./league" routerLinkActive="active">
+            <div class="footer__button">
+                <mat-icon svgIcon="assessment" aria-hidden="false" aria-label="League table"></mat-icon>
+                League
+            </div>
+        </button>
+        <button mat-button color="primary" routerLink="./squad" routerLinkActive="active">
+            <div class="footer__button">
+                <mat-icon svgIcon="account-box" aria-hidden="false" aria-label="League table"></mat-icon>
+                Squad
+            </div>
+        </button>
+        <button mat-button color="primary" routerLink="./matches" routerLinkActive="active">
+            <div class="footer__button">
+                <mat-icon svgIcon="calendar-view-day" aria-hidden="false" aria-label="League table"></mat-icon>
+                Matches
+            </div>
+        </button>
+        <button mat-button color="primary" (click)="logout()">
+            <div class="footer__button">
+                <mat-icon svgIcon="keyboard-capslock" aria-hidden="false" aria-label="League table"></mat-icon>
+                Log out
+            </div>
+        </button>
     </nav>
 </section>
 <router-outlet></router-outlet>

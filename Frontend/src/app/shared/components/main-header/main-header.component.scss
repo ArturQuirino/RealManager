@@ -38,22 +38,32 @@
     }
 
     .container-header {
-        background-color: #172601;
+        background-color: white;
         display: flex;
         flex-direction: row;
         height: 8%;
         justify-content: space-between;
         align-items: center;
         padding: 5px;
+        border-bottom: #172601 solid 1px;
 
         .logo-real-manager {
             margin: 0 0 0 20px;
-            color: white;
+            color: #172601;
         }
 
         button {
-            height: 80%;
-            margin: 0 10px;
+            opacity: 50%;
+            .footer__button{
+                height: 100%;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    
+        .active {
+            opacity: 100%;
         }
     }
 }
