@@ -3,6 +3,22 @@
     flex-direction: column;
     margin: 20px 10%;
 
+    .table-container {
+        overflow: auto;
+        .league-table {
+            width: 100%;
+            min-width: 400px;
+
+            .column-name {
+                min-width: 80px;
+            }
+            th {
+                min-width: 40px;
+            }
+        }
+    }
+
+
     .save-button {
         margin: 24px 0 0 0;
     }
