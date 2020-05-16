@@ -17,12 +17,17 @@
     padding: 5px 0 0 0;
 
     button {
+        opacity: 50%;
         .footer__button{
             height: 100%;
             align-items: center;
             display: flex;
             flex-direction: column;
         }
+    }
+
+    .active {
+        opacity: 100%;
     }
 }
 
