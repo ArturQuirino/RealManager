@@ -14,7 +14,11 @@ import { SquadComponent } from './squad/squad.component';
 import { MatchComponent } from './matches/match/match.component';
 import { JwtInterceptor } from './shared/guards/jwt.interceptor';
 import { ErrorInterceptor } from './shared/guards/error.interceptor';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
+
+registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,8 +37,8 @@ import { ErrorInterceptor } from './shared/guards/error.interceptor';
     HttpClientModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

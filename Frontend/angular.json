@@ -31,7 +31,9 @@
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             },
             "scripts": []
           },
@@ -63,6 +65,12 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "pt": {
+              "localize": [
+                "pt"
+              ],
+              "main": "src/main.ts"
             }
           }
         },
@@ -74,6 +82,9 @@
           "configurations": {
             "production": {
               "browserTarget": "real-manager:build:production"
+            },
+            "pt": {
+              "browserTarget": "real-manager:build:pt"
             }
           }
         },
@@ -125,6 +136,12 @@
               "devServerTarget": "real-manager:serve:production"
             }
           }
+        }
+      },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pt": "messages.xlf"
         }
       }
     }

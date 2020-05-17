@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f23ab2b3c51097510e8bd11be5b0ae5bc43f3447" datatype="html">
+        <source>League</source>
+        <target>Liga</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/main-header/main-header.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="776eb2d37f03bf2ccffcde815685f6cb036fe3d2" datatype="html">
+        <source>Squad</source>
+        <target>Equipe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/main-header/main-header.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="01aa5508abb4473531a18c605c1c41ae4b6074d0" datatype="html">
+        <source>Matches</source>
+        <target>Partidas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/main-header/main-header.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3fdc751b264ca9998e1542fcf5794e274cd56344" datatype="html">
+        <source>Log out</source>
+        <target>Sair</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/main-header/main-header.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
