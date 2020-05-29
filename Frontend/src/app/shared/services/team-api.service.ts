@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface PlayerApi {
   id: string;
@@ -31,10 +32,10 @@ export class TeamApiService {
   constructor(private http: HttpClient) { }
 
   getTeam(): Observable<TeamApi> {
-    return this.http.get<TeamApi>('https://localhost:44349/api/Team/');
+    return this.http.get<TeamApi>(`${environment.apiUrl}/api/Team/`);
   }
 
   updateTeam(teamApi: TeamApi): Observable<TeamApi> {
-    return this.http.put<TeamApi>('https://localhost:44349/api/Team', teamApi);
+    return this.http.put<TeamApi>(`${environment.apiUrl}/api/Team`, teamApi);
   }
 }
