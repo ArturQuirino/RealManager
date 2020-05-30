@@ -33,6 +33,11 @@ export class AppComponent {
       'keyboard-capslock',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/keyboard_capslock-24px.svg')
     );
+
+    iconRegistry.addSvgIcon(
+      'monetization-on',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/monetization_on-24px.svg')
+    );
   }
 
   title = 'real-manager';

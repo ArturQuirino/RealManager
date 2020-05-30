@@ -8,6 +8,7 @@ import { MatchesComponent } from './matches/matches.component';
 import { SquadComponent } from './squad/squad.component';
 import { MatchComponent } from './matches/match/match.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { MarketComponent } from './market/market.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'squad',
         component: SquadComponent
+      },
+      {
+        path: 'market',
+        component: MarketComponent
       }
     ]
   },

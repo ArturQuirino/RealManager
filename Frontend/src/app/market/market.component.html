@@ -1,0 +1,19 @@
+<article class="container-market">
+    <label class="label-available-money"><strong> Available money: </strong><span>{{availableMoney | currency}}</span></label>
+    <section class="card-player">
+        <h1>{{playerInformation.name}}</h1>
+        <span>{{playerPositionDescription}}</span>
+        <div class="container-player-information">
+            <label><strong>DEF: </strong><span>{{playerInformation.defence}}</span></label>
+            <label><strong>DRI: </strong><span>{{playerInformation.drible}}</span></label>
+            <label><strong>PAC: </strong><span>{{playerInformation.pace}}</span></label>
+            <label><strong>PAS: </strong><span>{{playerInformation.pass}}</span></label>
+            <label><strong>PHY: </strong><span>{{playerInformation.physical}}</span></label>
+            <label><strong>SHO: </strong><span>{{playerInformation.shoot}}</span></label>
+        </div>
+        <label><strong>Value: </strong><span>{{playerValue | currency}}</span></label>
+        <label><strong>Expires in: </strong><span>{{playerExpiration | date}}</span></label>
+        <button mat-raised-button color="primary" class="button-buy-player">Buy player</button>
+    </section>
+
+</article>

@@ -1,0 +1,33 @@
+.container-market {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
+
+.label-available-money {
+    margin: 0 0 48px 0;
+}
+
+.card-player {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 260px;
+    padding: 24px;
+
+    .container-player-information {
+        margin: 12px;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .button-buy-player {
+        margin: 24px 0 0 0; 
+    }
+}
+

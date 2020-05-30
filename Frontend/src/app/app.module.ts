@@ -16,6 +16,7 @@ import { JwtInterceptor } from './shared/guards/jwt.interceptor';
 import { ErrorInterceptor } from './shared/guards/error.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { MarketComponent } from './market/market.component';
 
 
 registerLocaleData(localePt);
@@ -28,7 +29,8 @@ registerLocaleData(localePt);
     MainHeaderComponent,
     MatchesComponent,
     SquadComponent,
-    MatchComponent
+    MatchComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

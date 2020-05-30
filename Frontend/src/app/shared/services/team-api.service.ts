@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 export interface PlayerApi {
   id: string;
-  position: number;
+  position: Position;
   name: string;
   overall: number;
   pace: number;
@@ -15,6 +15,10 @@ export interface PlayerApi {
   defence: number;
   physical: number;
   teamId: string;
+}
+
+export enum Position {
+  GK, DF, MF, ATA
 }
 
 export interface TeamApi {
