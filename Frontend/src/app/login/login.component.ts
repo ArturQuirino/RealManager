@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   signin(loginData: any) {
     this.loginApiService.login(loginData.email, loginData.password).subscribe(
-      (user: User) => {
+      () => {
         this.router.navigate(['/main']);
       },
       () => this.usarioSenhaInvalido = true
