@@ -1,25 +1,37 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { LeagueComponent } from './league.component';
+import { LeagueComponent } from './league.component';
+import { LeagueApiService } from '../shared/services/league-api.service';
+import { of } from 'rxjs';
 
-// describe('LeagueComponent', () => {
-//   let component: LeagueComponent;
-//   let fixture: ComponentFixture<LeagueComponent>;
+let leagueApiServiceMock: Partial<LeagueApiService>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ LeagueComponent ]
-//     })
-//     .compileComponents();
-//   }));
+describe('LeagueComponent', () => {
+  let component: LeagueComponent;
+  let fixture: ComponentFixture<LeagueComponent>;
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(LeagueComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async(() => {
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    leagueApiServiceMock = {
+        getLeagueByTeam: () => of([]),
+    };
+
+    TestBed.configureTestingModule({
+      declarations: [ LeagueComponent ],
+      providers: [
+          {provide: LeagueApiService, useValue: leagueApiServiceMock}
+        ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LeagueComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
