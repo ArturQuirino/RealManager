@@ -7,9 +7,7 @@ import { Observable, throwError, of } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/modules/material.module';
 
-class RouterMock {
-  public navigate() { }
-}
+let routerMock: Partial<Router>;
 
 let loginApiServiceMock: Partial<LoginApiService>;
 
@@ -23,11 +21,15 @@ describe('LoginComponent', () => {
       login: (email, password) => of(true)
     };
 
+    routerMock = {
+      navigate: () => null
+    };
+
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [ReactiveFormsModule, MaterialModule],
       providers: [
-        { provide: Router, useValue: RouterMock },
+        { provide: Router, useValue: routerMock },
         { provide: LoginApiService, useValue: loginApiServiceMock }
       ]
     })
