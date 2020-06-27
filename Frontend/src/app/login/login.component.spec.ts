@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/modules/material.module';
 
 let routerMock: Partial<Router>;
-
 let loginApiServiceMock: Partial<LoginApiService>;
 
 describe('LoginComponent', () => {
@@ -34,7 +33,6 @@ describe('LoginComponent', () => {
       ]
     })
     .compileComponents();
-
   });
 
   beforeEach(() => {
@@ -54,11 +52,11 @@ describe('LoginComponent', () => {
     });
 
     component.signin({email: 'test', password: 'test'});
-    expect(component.usarioSenhaInvalido).toBeTruthy();
+    expect(component.invalidUser).toBeTruthy();
   });
 
   it('should not set invalidUser when user/password valid', () => {
     component.signin({email: 'test', password: 'test'});
-    expect(component.usarioSenhaInvalido).toBeFalsy();
+    expect(component.invalidUser).toBeFalsy();
   });
 });
