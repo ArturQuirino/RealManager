@@ -3,13 +3,13 @@
     <h1 class="logo-header">Real Manager</h1>
     <form [formGroup]="loginForm" class="form-container" (ngSubmit)="signin(loginForm.value)">
       <mat-form-field>
-        <input matInput placeholder="Email" type="email" formControlName="email" id="emailInput"/>
+        <input matInput placeholder="Email" type="email" formControlName="email" data-cy="emailInput"/>
       </mat-form-field>
       <mat-form-field class="form__label-password">
-        <input matInput placeholder="Password" type="password" formControlName="password" id="passwordInput"/>
+        <input matInput placeholder="Password" type="password" formControlName="password" data-cy="passwordInput"/>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" id="loginButton">Sign in</button>
-      <span *ngIf="invalidUser" id="messageNotAllowed">Usuário e/ou senha inválido</span>
+      <button mat-raised-button color="primary" type="submit" data-cy="loginButton">Sign in</button>
+      <span *ngIf="invalidUser" data-cy="messageNotAllowed">Usuário e/ou senha inválido</span>
     </form>
     <button mat-button color="primary" routerLink="/signup"  routerLinkActive="active">Sign up</button>
   </div>

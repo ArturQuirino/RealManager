@@ -49,9 +49,7 @@ describe('Integrated - LoginComponent', () => {
   });
 
   it('should set invalidUser when user/password invalid', fakeAsync(() => {
-    const testData = {email: 'test', password: 'test'};
-
-    component.signin(testData);
+    component.signin({email: 'test', password: 'test'});
 
     const req = httpTestingController.expectOne('https://localhost:5001/Login');
 
@@ -60,10 +58,8 @@ describe('Integrated - LoginComponent', () => {
     expect(component.invalidUser).toBeTruthy();
   }));
 
-  it('should not set invalidUser when user/password valid', async (() => {
-    const testData = {email: 'test', password: 'test'};
-
-    component.signin(testData);
+  it('should not set invalidUser when user/password valid', fakeAsync (() => {
+    component.signin({email: 'test', password: 'test'});
 
     const req = httpTestingController.expectOne('https://localhost:5001/Login');
 
