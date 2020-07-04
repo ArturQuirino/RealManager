@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  usarioSenhaInvalido = false;
+  invalidUser = false;
 
   constructor(private router: Router, private loginApiService: LoginApiService) { }
 
@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
 
   signin(loginData: any) {
     this.loginApiService.login(loginData.email, loginData.password).subscribe(
-      (user: User) => {
+      () => {
         this.router.navigate(['/main']);
       },
-      () => this.usarioSenhaInvalido = true
+      () => this.invalidUser = true
     );
   }
-
 }
