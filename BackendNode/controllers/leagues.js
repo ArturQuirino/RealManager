@@ -1,5 +1,7 @@
+const verifyJWT = require('../util/verifyJWT');
+
 module.exports = app => {
-    app.get('/leagues', (req, res) => {
+    app.get('/leagues', verifyJWT, (req, res) => {
         res.send("you are on route leagues")
     });
 
