@@ -10,7 +10,16 @@ class userRepository extends repositoryBase {
             });
         });
         return user;
+    }
 
+    async createUser (user) {
+        let userId = null;
+        await this.useDatabase(async (client) => {
+            await client.db('realmanagerdev').collection('users').insertOne(user).then((document) => {
+                userId = document.insertedId;
+            })
+        });
+        return userId;
     }
 }
 
