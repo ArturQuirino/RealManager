@@ -33,7 +33,7 @@ registerLocaleData(localePt);
     MarketComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
