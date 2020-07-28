@@ -3,8 +3,8 @@ const userService = new UserService();
 
 module.exports = app => {
     app.post('/user', (req, res) => {
-        const {email, password} = req.body;
-        userService.signUp(email, password).then((user) => {
+        const {email, password, teamName} = req.body;
+        userService.signUp(email, password, teamName).then((user) => {
             return res.status(200).send(user)
         });
     });

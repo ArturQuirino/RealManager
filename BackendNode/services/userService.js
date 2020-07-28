@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
 const UserRepository = require('../data/userRepository');
 const userRepository = new UserRepository();
+const TeamService = require('./teamService');
+const teamService = new TeamService();
 const bcrypt = require('bcrypt');
 
-class userService {
-    async signUp (email, password) {
+class UserService {
+    async signUp (email, password, teamName) {
+        const usersTeam = teamService.createRandomTeam(teamName);
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(password, salt);
         const user = {
@@ -19,4 +22,4 @@ class userService {
     }
 }
 
-module.exports = userService;
+module.exports = UserService;
