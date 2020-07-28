@@ -10,7 +10,8 @@ class userService {
         const user = {
             email,
             hashPassword: hash,
-            teamId: 1
+            teamId: 1,
+            salt: salt
         }
         const createdUser = await userRepository.createUser(user);
 

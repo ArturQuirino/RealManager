@@ -5,7 +5,7 @@ class userRepository extends repositoryBase {
     async getUserByEmail (email) {
         let user = null;
         await this.useDatabase(async (client) => {
-            await client.db('realmanagerdev').collection('users').findOne({}, (err, result) => {
+            await client.db('realmanagerdev').collection('users').findOne({email: email}, (err, result) => {
                 user = result;
             });
         });
