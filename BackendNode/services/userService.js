@@ -7,13 +7,13 @@ const bcrypt = require('bcrypt');
 
 class UserService {
     async signUp (email, password, teamName) {
-        const usersTeam = teamService.createRandomTeam(teamName);
+        const usersTeam = await teamService.createRandomTeam(teamName);
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(password, salt);
         const user = {
             email,
             hashPassword: hash,
-            teamId: 1,
+            teamId: usersTeam._id,
             salt: salt
         }
         const createdUser = await userRepository.createUser(user);
