@@ -34,6 +34,10 @@ class TeamService {
         newPlayer.drible = Math.floor((Math.random() * 100) + 1);
         newPlayer.overall = [newPlayer.pace, newPlayer.pass, newPlayer.physical, newPlayer.defence, newPlayer.shoot, newPlayer.drible].reduce((a, b) => a + b) / 6;
 
+        newPlayer.position = position;
+
+        newPlayer.teamId = newTeamId;
+
         return newPlayer
     }
 }
