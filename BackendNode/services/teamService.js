@@ -44,6 +44,8 @@ class TeamService {
 
     createRandomPlayer(position, newTeamId) {
         const newPlayer = new Player();
+        newPlayer._id = uuidv4();
+
         const indexFirstName = Math.floor((Math.random() * constants.possibleNames.length));
         const indexSurname = Math.floor((Math.random() * constants.possibleSurnames.length));
 
@@ -65,10 +67,8 @@ class TeamService {
     }
 
     selectRandomPosition() {
-        return function (Position) {
-            var keys = Object.keys(Position);
-            return Position[keys[ keys.length * Math.random() << 0]];
-        };
+        var keys = Object.keys(Position);
+        return Position[keys[ keys.length * Math.random() << 0]];
     }
 }
 
