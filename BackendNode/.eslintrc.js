@@ -15,10 +15,11 @@ module.exports = {
     'ecmaFeatures': {
       'jsx': true,
       'modules': true,
-      'experimentalObjectRestSpread': true
-    }
+      'experimentalObjectRestSpread': true,
+    },
   },
   'rules': {
+    'max-len': ['error', 120],
     'require-jsdoc': 0,
   },
 };

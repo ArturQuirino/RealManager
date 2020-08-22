@@ -10,77 +10,80 @@ const constants = require('../util/constantes');
 
 
 class TeamService {
-    async createRandomTeam (teamName) {
-        const newTeam = new Team();
-        newTeam.name = teamName;
-        newTeam._id = uuidv4();
+  async createRandomTeam(teamName) {
+    const newTeam = new Team();
+    newTeam.name = teamName;
+    newTeam._id = uuidv4();
 
-        for(let i = 0; i < 23; i++) {
-            let newPlayer;
-            if (i === 0) {
-                newPlayer = this.createRandomPlayer(Position.GK, newTeam._id);
-                newTeam.players.push(newPlayer);
-                newTeam.starters.push(newPlayer);
-            }
-            else if (i >= 1 && i <= 4) {
-                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
-                newTeam.players.push(newPlayer);
-                newTeam.starters.push(newPlayer);
-            }
-            else if (i >= 5 && i <= 7) {
-                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
-                newTeam.players.push(newPlayer);
-                newTeam.starters.push(newPlayer);
-            }
-            else if (i >= 8 && i <= 10) {
-                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
-                newTeam.players.push(newPlayer);
-                newTeam.starters.push(newPlayer);
-            }
-            else {
-                newPlayer = this.createRandomPlayer(undefined, newTeam._id);
-                newTeam.players.push(newPlayer);
-            }
-        }
-
-        const createdTeam = await teamRepository.createTeam(newTeam);
-
-        return createdTeam;
+    for (let i = 0; i < 23; i++) {
+      let newPlayer;
+      if (i === 0) {
+        newPlayer = this.createRandomPlayer(Position.GK, newTeam._id);
+        newTeam.players.push(newPlayer);
+        newTeam.starters.push(newPlayer);
+      } else if (i >= 1 && i <= 4) {
+        newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
+        newTeam.players.push(newPlayer);
+        newTeam.starters.push(newPlayer);
+      } else if (i >= 5 && i <= 7) {
+        newPlayer = this.createRandomPlayer(Position.MF, newTeam._id);
+        newTeam.players.push(newPlayer);
+        newTeam.starters.push(newPlayer);
+      } else if (i >= 8 && i <= 10) {
+        newPlayer = this.createRandomPlayer(Position.AT, newTeam._id);
+        newTeam.players.push(newPlayer);
+        newTeam.starters.push(newPlayer);
+      } else {
+        newPlayer = this.createRandomPlayer(undefined, newTeam._id);
+        newTeam.players.push(newPlayer);
+      }
     }
 
-    async getTeam(teamId) {
-        var team = await teamRepository.getTeamById(teamId);
-        return team;
-    }
+    const createdTeam = await teamRepository.createTeam(newTeam);
 
-    createRandomPlayer(position, newTeamId) {
-        const newPlayer = new Player();
-        newPlayer._id = uuidv4();
+    return createdTeam;
+  }
 
-        const indexFirstName = Math.floor((Math.random() * constants.possibleNames.length));
-        const indexSurname = Math.floor((Math.random() * constants.possibleSurnames.length));
+  async getTeam(teamId) {
+    const team = await teamRepository.getTeamById(teamId);
+    return team;
+  }
 
-        newPlayer.name = constants.possibleNames[indexFirstName] + ' ' + constants.possibleSurnames[indexSurname];
+  createRandomPlayer(position, newTeamId) {
+    const newPlayer = new Player();
+    newPlayer._id = uuidv4();
 
-        newPlayer.pace = Math.floor((Math.random() * 100) + 1);
-        newPlayer.pass = Math.floor((Math.random() * 100) + 1);
-        newPlayer.physical = Math.floor((Math.random() * 100) + 1);
-        newPlayer.defence = Math.floor((Math.random() * 100) + 1);
-        newPlayer.shoot = Math.floor((Math.random() * 100) + 1);
-        newPlayer.drible = Math.floor((Math.random() * 100) + 1);
-        newPlayer.overall = [newPlayer.pace, newPlayer.pass, newPlayer.physical, newPlayer.defence, newPlayer.shoot, newPlayer.drible].reduce((a, b) => a + b) / 6;
+    const indexFirstName = Math.floor((Math.random() * constants.possibleNames.length));
+    const indexSurname = Math.floor((Math.random() * constants.possibleSurnames.length));
 
-        newPlayer.position = position ? position : this.selectRandomPosition();
+    newPlayer.name = constants.possibleNames[indexFirstName] + ' ' + constants.possibleSurnames[indexSurname];
 
-        newPlayer.teamId = newTeamId;
+    newPlayer.pace = Math.floor((Math.random() * 100) + 1);
+    newPlayer.pass = Math.floor((Math.random() * 100) + 1);
+    newPlayer.physical = Math.floor((Math.random() * 100) + 1);
+    newPlayer.defence = Math.floor((Math.random() * 100) + 1);
+    newPlayer.shoot = Math.floor((Math.random() * 100) + 1);
+    newPlayer.drible = Math.floor((Math.random() * 100) + 1);
+    newPlayer.overall = [
+      newPlayer.pace,
+      newPlayer.pass,
+      newPlayer.physical,
+      newPlayer.defence,
+      newPlayer.shoot,
+      newPlayer.drible,
+    ].reduce((a, b) => a + b) / 6;
 
-        return newPlayer
-    }
+    newPlayer.position = position ? position : this.selectRandomPosition();
 
-    selectRandomPosition() {
-        var keys = Object.keys(Position);
-        return Position[keys[ keys.length * Math.random() << 0]];
-    }
+    newPlayer.teamId = newTeamId;
+
+    return newPlayer;
+  }
+
+  selectRandomPosition() {
+    const keys = Object.keys(Position);
+    return Position[keys[keys.length * Math.random() << 0]];
+  }
 }
 
 module.exports = TeamService;
