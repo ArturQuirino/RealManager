@@ -2,7 +2,7 @@ const repositoryBase = require('./repositoryBase');
 
 class teamRepository extends repositoryBase {
     async getTeamById (id) {
-        let team = null;
+        let team;
         await this.useDatabase(async (client) => {
             await client.db('realmanagerdev').collection('teams').findOne({_id: id}, (err, result) => {
                 team = result;

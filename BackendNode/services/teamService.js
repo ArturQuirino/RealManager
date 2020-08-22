@@ -48,6 +48,11 @@ class TeamService {
         return createdTeam;
     }
 
+    async getTeam(teamId) {
+        var team = await teamRepository.getTeamById(teamId);
+        return team;
+    }
+
     createRandomPlayer(position, newTeamId) {
         const newPlayer = new Player();
         newPlayer._id = uuidv4();
