@@ -1,6 +1,10 @@
 const Team = require('../domain/team');
 const Position = require('../domain/position');
 const Player = require('../domain/player');
+
+const TeamRepository = require('../data/teamRepository');
+const teamRepository = new TeamRepository();
+
 const {v4: uuidv4} = require('uuid');
 const constants = require('../util/constantes');
 
@@ -39,7 +43,9 @@ class TeamService {
             }
         }
 
-        return newTeam;
+        const createdTeam = await teamRepository.createTeam(newTeam);
+
+        return createdTeam;
     }
 
     createRandomPlayer(position, newTeamId) {
