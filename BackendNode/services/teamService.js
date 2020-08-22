@@ -12,8 +12,31 @@ class TeamService {
         newTeam._id = uuidv4();
 
         for(let i = 0; i < 23; i++) {
-            const newPlayer = this.createRandomPlayer(Position.GK, newTeam._id);
-            newTeam.players.push(newPlayer);
+            let newPlayer;
+            if (i === 0) {
+                newPlayer = this.createRandomPlayer(Position.GK, newTeam._id);
+                newTeam.players.push(newPlayer);
+                newTeam.starters.push(newPlayer);
+            }
+            else if (i >= 1 && i <= 4) {
+                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
+                newTeam.players.push(newPlayer);
+                newTeam.starters.push(newPlayer);
+            }
+            else if (i >= 5 && i <= 7) {
+                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
+                newTeam.players.push(newPlayer);
+                newTeam.starters.push(newPlayer);
+            }
+            else if (i >= 8 && i <= 10) {
+                newPlayer = this.createRandomPlayer(Position.DF, newTeam._id);
+                newTeam.players.push(newPlayer);
+                newTeam.starters.push(newPlayer);
+            }
+            else {
+                newPlayer = this.createRandomPlayer(undefined, newTeam._id);
+                newTeam.players.push(newPlayer);
+            }
         }
 
         return newTeam;
@@ -34,11 +57,18 @@ class TeamService {
         newPlayer.drible = Math.floor((Math.random() * 100) + 1);
         newPlayer.overall = [newPlayer.pace, newPlayer.pass, newPlayer.physical, newPlayer.defence, newPlayer.shoot, newPlayer.drible].reduce((a, b) => a + b) / 6;
 
-        newPlayer.position = position;
+        newPlayer.position = position ? position : this.selectRandomPosition();
 
         newPlayer.teamId = newTeamId;
 
         return newPlayer
+    }
+
+    selectRandomPosition() {
+        return function (Position) {
+            var keys = Object.keys(Position);
+            return Position[keys[ keys.length * Math.random() << 0]];
+        };
     }
 }
 
