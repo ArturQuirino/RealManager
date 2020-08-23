@@ -1,6 +1,9 @@
 const Match = require('../domain/match');
 const Position = require('../domain/position');
 
+const MatchRepository = require('../data/matchRepository');
+const matchRepository = new MatchRepository();
+
 
 class MatchService {
   runFriendly(homeTeam, awayTeam) {
@@ -12,6 +15,8 @@ class MatchService {
       match.awayGoals = singleEvent.awayGoals;
       match.homeGoals = singleEvent.homeGoals;
     }
+
+    matchRepository.createMatch(match);
 
     return match;
   }
