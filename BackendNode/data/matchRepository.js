@@ -13,11 +13,10 @@ class matchRepository extends repositoryBase {
   }
 
   async createMatch(match) {
-    let match;
     await this.useDatabase(async (client) => {
       await client.db('realmanagerdev').collection('matches')
           .insertOne(match).then((document) => {
-            team = document;
+            match = document;
           });
     });
     return match;
