@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RealManager.Repositories.Models
 {
@@ -17,5 +18,6 @@ namespace RealManager.Repositories.Models
         public Guid Starter9Id { get; set; }
         public Guid Starter10Id { get; set; }
         public Guid Starter11Id { get; set; }
+        public List<PlayerDb> Players { get; set; }
     }
 }
