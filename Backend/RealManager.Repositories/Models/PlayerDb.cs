@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealManager.Repositories.Models
 {
@@ -14,6 +15,8 @@ namespace RealManager.Repositories.Models
         public int Physical { get; set; }
         public int Position { get; set; }
         public int Overall { get; set; }
+
+        [ForeignKey("Teams")]
         public Guid TeamId { get; set; }
     }
 }

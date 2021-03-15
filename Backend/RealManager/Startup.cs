@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,12 @@ namespace RealManager
                 };
             });
 
+            var connectionString = Configuration.GetValue<string>("sqlconnectionstring");
+
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(connectionString));
+
+
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<ITeamService, TeamService>();
@@ -87,12 +94,12 @@ namespace RealManager
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<ILeagueRepository, LeagueRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllers().AddNewtonsoftJson();
 
 
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));
+
 
 
         }
