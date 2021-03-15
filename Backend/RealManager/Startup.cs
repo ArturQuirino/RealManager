@@ -77,8 +77,10 @@ namespace RealManager
                 };
             });
 
+            var connectionString = Configuration.GetValue<string>("sqlconnectionstring");
+
             services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));
+                options.UseSqlServer(connectionString));
 
 
             services.AddScoped<IMatchService, MatchService>();
