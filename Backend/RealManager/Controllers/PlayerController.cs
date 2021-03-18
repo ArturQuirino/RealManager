@@ -21,6 +21,13 @@ namespace RealManager.Controllers
             _playerService = matchService;
         }
 
+        [HttpGet]
+        [Route("")]
+        public List<Player> GetAllPLayers()
+        {
+            return _playerService.GetAllPlayers();
+        }
+
         [HttpPost]
         [Route("")]
         public Player Post([FromBody]Player player)
