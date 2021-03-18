@@ -22,6 +22,4 @@ namespace RealManager.Domain
         public Guid TeamId { get;set; }
         public int Overall { get; set; }
     }
-
-
 }
