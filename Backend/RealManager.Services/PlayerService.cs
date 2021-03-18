@@ -4,6 +4,7 @@ using RealManager.Repositories.Interfaces;
 using RealManager.Shared;
 using Services.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RealManager.Services
@@ -13,6 +14,11 @@ namespace RealManager.Services
         private readonly IPlayerRepository _playerRepository;
         public PlayerService(IPlayerRepository playerRepository){
             _playerRepository = playerRepository;
+        }
+
+        public List<Player> GetAllPlayers()
+        {
+            return _playerRepository.GetAllPlayers();
         }
 
         public Player CreatePlayer(Player player){
