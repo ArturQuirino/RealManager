@@ -18,11 +18,6 @@ namespace RealManager.Repositories
         public List<Player> GetAllPlayers()
         {
             var players = _dataContext.Players.ToList();
-            // Player player = new Player("Davi Quirino");
-            //List<Player> players = new List<Player>
-            //{
-            //    player
-            //};
             var playersFromTeam = new List<Player>();
 
             foreach (PlayerDb playerDb in players)

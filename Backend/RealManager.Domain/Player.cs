@@ -6,13 +6,6 @@ namespace RealManager.Domain
 {
     public class Player
     {
-
-        public Player(string name)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-        }
-
         public Player()
         {
             Id = Guid.NewGuid();
