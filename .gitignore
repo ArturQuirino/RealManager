@@ -69,3 +69,4 @@ appsettings.Development.json
 .sonarqube/*
 */.sonarqube/*
 
+launchSettings.json

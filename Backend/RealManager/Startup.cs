@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RealManager.Repositories;
 using RealManager.Repositories.Interfaces;
@@ -21,6 +14,8 @@ using RealManager.Services;
 using RealManager.Services.Interfaces;
 using RealManager.Shared;
 using Services.Interfaces;
+using AutoMapper;
+using RealManager.Repositories.Profiles;
 
 namespace RealManager
 {
@@ -98,7 +93,15 @@ namespace RealManager
 
             services.AddControllers().AddNewtonsoftJson();
 
+            services.AddAutoMapper(typeof(Startup));
 
+            var mappingConfig = new MapperConfiguration(c =>
+            {
+                c.AddProfile(new PlayerProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
 
 

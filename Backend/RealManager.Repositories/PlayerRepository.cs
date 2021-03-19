@@ -1,32 +1,22 @@
 using RealManager.Domain;
 using RealManager.Repositories.Models;
 using RealManager.Repositories.Interfaces;
+using AutoMapper;
 
 namespace RealManager.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
         private DataContext _dataContext;
-        public PlayerRepository(DataContext dataContext)
+        private readonly IMapper _mapper;
+        public PlayerRepository(DataContext dataContext, IMapper mapper)
         {
             _dataContext = dataContext;
+            _mapper = mapper;
         }
         public Player Create(Player player)
         {
-            PlayerDb playerDb = new PlayerDb
-            {
-                Id = player.Id,
-                Defence = player.Defence,
-                Drible = player.Drible,
-                Name = player.Name,
-                Pace = player.Pace,
-                Pass = player.Pass,
-                Physical = player.Physical,
-                Position = (int)player.Position,
-                Shoot = player.Shoot,
-                Overall = player.Overall,
-                TeamId = player.TeamId
-            };
+            var playerDb = _mapper.Map<PlayerDb>(player);
 
             _dataContext.Players.Add(playerDb);
             _dataContext.SaveChanges();
